@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="明磊的技术网站">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="明磊的技术网站">
+<meta property="og:description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="明磊的技术网站">
+<meta name="twitter:description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>明磊的技术网站</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">明磊的技术网站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Apache Flink/Hadoop Contributors</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/已经解决的-Hadoop-Jira/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/16/已经解决的-Hadoop-Jira/" itemprop="url">已经解决的 Hadoop Jira</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T23:09:57+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="已经解决的-Hadoop-JIRA"><a href="#已经解决的-Hadoop-JIRA" class="headerlink" title="已经解决的 Hadoop JIRA"></a>已经解决的 Hadoop JIRA</h2><h3 id="https-issues-apache-org-jira-browse-MAPREDUCE-6729"><a href="#https-issues-apache-org-jira-browse-MAPREDUCE-6729" class="headerlink" title="https://issues.apache.org/jira/browse/MAPREDUCE-6729"></a><a href="https://issues.apache.org/jira/browse/MAPREDUCE-6729" target="_blank" rel="external">https://issues.apache.org/jira/browse/MAPREDUCE-6729</a></h3><ul>
+<li><font color="#0099ff">Accurately compute the test execute time in DFSIO</font>
+
+</li>
+</ul>
+<h3 id="Progress-Report-Bringing-Erasure-Coding-to-Apache-Hadoop"><a href="#Progress-Report-Bringing-Erasure-Coding-to-Apache-Hadoop" class="headerlink" title="Progress Report: Bringing Erasure Coding to Apache Hadoop"></a>Progress Report: Bringing Erasure Coding to Apache Hadoop</h3><ul>
+<li><font color="#0099ff">Minglei Zhang for performing concrete benchmark tests</font>
+</li>
+<li><p><a href="http://blog.cloudera.com/blog/2016/02/progress-report-bringing-erasure-coding-to-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/02/progress-report-bringing-erasure-coding-to-apache-hadoop/</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/已经解决的-Flink-Jira/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/16/已经解决的-Flink-Jira/" itemprop="url">已经解决的 Flink Jira</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T23:03:52+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="已经解决的-Flink-JIRA"><a href="#已经解决的-Flink-JIRA" class="headerlink" title="已经解决的 Flink JIRA"></a>已经解决的 Flink JIRA</h2><h3 id="https-issues-apache-org-jira-browse-FLINK-6381"><a href="#https-issues-apache-org-jira-browse-FLINK-6381" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6381"></a><a href="https://issues.apache.org/jira/browse/FLINK-6381" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6381</a></h3><ul>
+<li><font color="#0099ff">Unnecessary synchronized object in BucketingSink</font>
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6399"><a href="#https-issues-apache-org-jira-browse-FLINK-6399" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6399"></a><a href="https://issues.apache.org/jira/browse/FLINK-6399" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6399</a></h3><ul>
+<li><font color="#0099ff">Update default Hadoop download version</font>
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6311"><a href="#https-issues-apache-org-jira-browse-FLINK-6311" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6311"></a><a href="https://issues.apache.org/jira/browse/FLINK-6311" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6311</a></h3><ul>
+<li><font color="#0099ff">NPE in FlinkKinesisConsumer if source was closed before run</font>
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6143"><a href="#https-issues-apache-org-jira-browse-FLINK-6143" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6143"></a><a href="https://issues.apache.org/jira/browse/FLINK-6143" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6143</a></h3><ul>
+<li><font color="#0099ff">Unprotected access to this.flink in LocalExecutor#endSession</font>
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6313"><a href="#https-issues-apache-org-jira-browse-FLINK-6313" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6313"></a><a href="https://issues.apache.org/jira/browse/FLINK-6313" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6313</a></h3><ul>
+<li><font color="#0099ff">Some words was spelled wrong and incorrect LOG.error without print</font>
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6104"><a href="#https-issues-apache-org-jira-browse-FLINK-6104" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6104"></a><a href="https://issues.apache.org/jira/browse/FLINK-6104" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6104</a></h3><ul>
+<li><font color="#0099ff">Resource leak in ListViaRangeSpeedMiniBenchmark</font></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/16/开源社区里面常用的-Git-操作/" itemprop="url">开源社区里面常用的 Git 操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T00:26:52+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Git-Commands-in-Github-amp-Gitlab-amp-Git"><a href="#Git-Commands-in-Github-amp-Gitlab-amp-Git" class="headerlink" title="Git Commands in Github &amp; Gitlab &amp; Git"></a>Git Commands in Github &amp; Gitlab &amp; Git</h2><p><strong>最常用的 Git 操作命令</strong> 一般有 git add, git commit, git fetch, git rebase, git reset, git push, git branch, git log, git rm, git checkout, git remote 以及加在这些命令后面的参数，然后其它的我好像也没有怎么用过了. 我这里只讲我是如何用这些命令来完成看似比较复杂的开源社区以及在公司里面如何同时在 10 个左右的分支上同时开发项目的，以及在子分支上建立 subtask 再一步一步 merge 到 master / dev / trunk 分支上。</p>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="rice.zhang" />
+          <p class="site-author-name" itemprop="name">rice.zhang</p>
+           
+              <p class="site-description motion-element" itemprop="description">即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">rice.zhang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
