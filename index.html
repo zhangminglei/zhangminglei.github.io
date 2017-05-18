@@ -349,58 +349,13 @@
 <p>Hadoop使用 Protobuf 去做序列化的一些事情，比如用在了RPC以及 Namenode 的 FSImage 的 Serialization &amp; Deserialization的过程中<br>对于RPC，【Hadoop里面采用Java的动态代理和JavaNIO实现】【顺便再说下【DFSClient去访问Namenode的时候也采用了Java的动态代理去实现的，创建了Namenode的代理类】】<br>jdk 1.7 &amp; maven (换成自己公司的maven仓库，如果用别的代理，可能会出现 tomcat下载不成功，需要手动的去 wget 到指定的位置，2处即可）<br>Windows 7 下面 build <a href="http://stackoverflow.com/questions/31396991/problems-building-hadoop-3-0-0-snapshot-on-windows-7-64-bits-and-java-8-and-mave/31403918#31403918" target="_blank" rel="external">Reference Here</a></p>
 <p>##具体步骤</p>
 <p><strong>First Step</strong>: git clone <a href="https://github.com/apache/hadoop" target="_blank" rel="external">https://github.com/apache/hadoop</a> </p>
-<p><strong>Second Step</strong>:  <code>mvn package –Pdist –DskipTests –Dtar</code></p>
-<p>最后你可以看到 如下信息，如果一切顺利。</p>
-<pre><code>
-[INFO] Apache Hadoop Scheduler Load Simulator ............. SUCCESS [  2.911 s]
-
-[INFO] Apache Hadoop Tools Dist ........................... SUCCESS [  4.253 s]
-
-[INFO] Apache Hadoop Kafka Library support ................ SUCCESS [  2.183 s]
-
-[INFO] Apache Hadoop Tools ................................ SUCCESS [  0.014 s]
-
-[INFO] Apache Hadoop Distribution ......................... SUCCESS [ 19.896 s]
-
-[INFO] ------------------------------------------------------------------------
-
-[INFO] BUILD SUCCESS
-
-[INFO] ------------------------------------------------------------------------
-
-[INFO] Total time: 19:07 min
-
-[INFO] Finished at: 2015-12-02T15:25:54+08:00
-
-[INFO] Final Memory: 240M/1011M
-
-</code></pre>
-接下来，去 hadoop-dist 目录下把 build 出来的 tar包发布到你想要的位置并解压。然后格式化 Namenode  hdfs namenode -format ,格式化成功后，会有 Existing with Status 0,否则是1，关于什么时候需要格式化Namenode，根据需要来定，当然第一次使用 HDFS 是肯定需要格式化 Namenode的，就相当于你第一次使用计算机一样，需要格式化磁盘的。这里面记录了文件系统上面的一些最基本的 metadata。比如：NamespaceID, layoutVersion , storageType, etc.
-当然在格式化之前，你需要去配置一些信息，当然这也是根据你的需求来定的，在这里，需要有2个配置文件需要进行修改，一个是hdfs-site.xml，修改这个配置文件的作用是指定NN和DN在文件系统上的作用，包括但不限于 replication factor 以及blocksize 的设置。
-另外一个配置文件是指core-site.xml，初次配置只需要简单的如下设置
-
-    <configuration>
-        <property>
-            <name>fs.default.name</name>
-             <value>hdfs://localhost:9000</value>
-         </property>
-    </configuration>
-
-此时，再去sbin下面启动文件系统，生成 datanode文件夹，关于启动文件系统，做了哪些事情，可以参考这篇 [Blog](http://blog.csdn.net/lskyne/article/details/8843388#t1) ，重点看 BlockMap的构建。
-最后启动文件系统 sbin/start-dfs.sh，在浏览器中 输入 localhost:50070 即可看到界面
-
-## Debug Namenode
-
-OK, 下面来说明如何调试 hadoop 源码，这样对 hadoop 会有更好的理解，在调试之间，得保证一点的是，你的binary要求和你的源码是一致的，而且不能改动源码，如果改动源码，那么需要 rebuild 重新生成生成 binary, 在 IntelliJ IDEA 里面打开你的 hadoop 源码，
-
-Run -> Edit Configurations -> Add Remote 
-
-在 `Configuration Tab` 里面把 `Command Line arguments for running remote  JVM` 里面的那一行复制出来  `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005` , 然后需要把 `suspend = n`  修改成 `y` , 修改这个参数的目的是 启动 hdfs 的时候, 它会挂起在任何你想要 debug namenode 的地方,并且在 5005 端口进行监听 。OK , 根据自己的经验, 一般这样去 Debug Hadoop Namenode 源码太耗时, 后面会介绍根据 MiniCluster 来 Debug Namenode源码。当然 MiniCluster必须跑在 Linux 上, Windows上是跑不了的。
-
-修改配置文件 `hadoop-env.sh`, 添加如下参数
-
-Set JMX options
-
+<p><strong>Second Step</strong>:  <figure class="highlight plain"><figcaption><span>package –Pdist –DskipTests –Dtar```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">最后你可以看到 如下信息，如果一切顺利。</div><div class="line"></div><div class="line">&lt;pre&gt;&lt;code&gt;</div><div class="line">[INFO] Apache Hadoop Scheduler Load Simulator ............. SUCCESS [  2.911 s]</div><div class="line"></div><div class="line">[INFO] Apache Hadoop Tools Dist ........................... SUCCESS [  4.253 s]</div><div class="line"></div><div class="line">[INFO] Apache Hadoop Kafka Library support ................ SUCCESS [  2.183 s]</div><div class="line"></div><div class="line">[INFO] Apache Hadoop Tools ................................ SUCCESS [  0.014 s]</div><div class="line"></div><div class="line">[INFO] Apache Hadoop Distribution ......................... SUCCESS [ 19.896 s]</div><div class="line"></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line"></div><div class="line">[INFO] BUILD SUCCESS</div><div class="line"></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line"></div><div class="line">[INFO] Total time: 19:07 min</div><div class="line"></div><div class="line">[INFO] Finished at: 2015-12-02T15:25:54+08:00</div><div class="line"></div><div class="line">[INFO] Final Memory: 240M/1011M</div><div class="line"></div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div><div class="line">接下来，去 hadoop-dist 目录下把 build 出来的 tar包发布到你想要的位置并解压。然后格式化 Namenode  hdfs namenode -format ,格式化成功后，会有 Existing with Status 0,否则是1，关于什么时候需要格式化Namenode，根据需要来定，当然第一次使用 HDFS 是肯定需要格式化 Namenode的，就相当于你第一次使用计算机一样，需要格式化磁盘的。这里面记录了文件系统上面的一些最基本的 metadata。比如：NamespaceID, layoutVersion , storageType, etc.</div><div class="line">当然在格式化之前，你需要去配置一些信息，当然这也是根据你的需求来定的，在这里，需要有2个配置文件需要进行修改，一个是hdfs-site.xml，修改这个配置文件的作用是指定NN和DN在文件系统上的作用，包括但不限于 replication factor 以及blocksize 的设置。</div><div class="line">另外一个配置文件是指core-site.xml，初次配置只需要简单的如下设置</div><div class="line"></div><div class="line">```xml</div><div class="line">	&lt;configuration&gt;</div><div class="line">		&lt;property&gt;</div><div class="line">			&lt;name&gt;fs.default.name&lt;/name&gt;</div><div class="line">         	&lt;value&gt;hdfs://localhost:9000&lt;/value&gt;</div><div class="line">     	&lt;/property&gt;</div><div class="line">	&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>此时，再去sbin下面启动文件系统，生成 datanode文件夹，关于启动文件系统，做了哪些事情，可以参考这篇 <a href="http://blog.csdn.net/lskyne/article/details/8843388#t1" target="_blank" rel="external">Blog</a> ，重点看 BlockMap的构建。<br>最后启动文件系统 sbin/start-dfs.sh，在浏览器中 输入 localhost:50070 即可看到界面</p>
+<h2 id="Debug-Namenode"><a href="#Debug-Namenode" class="headerlink" title="Debug Namenode"></a>Debug Namenode</h2><p>OK, 下面来说明如何调试 hadoop 源码，这样对 hadoop 会有更好的理解，在调试之间，得保证一点的是，你的binary要求和你的源码是一致的，而且不能改动源码，如果改动源码，那么需要 rebuild 重新生成生成 binary, 在 IntelliJ IDEA 里面打开你的 hadoop 源码，</p>
+<p>Run -&gt; Edit Configurations -&gt; Add Remote </p>
+<p>在 <code>Configuration Tab</code> 里面把 <code>Command Line arguments for running remote  JVM</code> 里面的那一行复制出来  <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</code> , 然后需要把 <code>suspend = n</code>  修改成 <code>y</code> , 修改这个参数的目的是 启动 hdfs 的时候, 它会挂起在任何你想要 debug namenode 的地方,并且在 5005 端口进行监听 。OK , 根据自己的经验, 一般这样去 Debug Hadoop Namenode 源码太耗时, 后面会介绍根据 MiniCluster 来 Debug Namenode源码。当然 MiniCluster必须跑在 Linux 上, Windows上是跑不了的。</p>
+<p>修改配置文件 <code>hadoop-env.sh</code>, 添加如下参数</p>
+<p>Set JMX options</p>
 <pre><code>export HADOOP_NAMENODE_OPTS="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1026 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 </code></pre>
 
