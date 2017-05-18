@@ -343,7 +343,8 @@
       
         
           
-            <h2 id="软硬件环境"><a href="#软硬件环境" class="headerlink" title="软硬件环境"></a>软硬件环境</h2><p>Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) <a href="http://jingyan.baidu.com/article/5553fa82e3a1c565a23934c5.html" target="_blank" rel="external">Reference Here</a><br>个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debian也是可以的, <a href="http://www.zhihu.com/question/36287908" target="_blank" rel="external">Reference Here</a><br>apt-get install g++ (  目的是为了build protobuf )</p>
+            <h2 id="软硬件环境"><a href="#软硬件环境" class="headerlink" title="软硬件环境"></a>软硬件环境</h2><p>Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) <a href="http://jingyan.baidu.com/article/5553fa82e3a1c565a23934c5.html" target="_blank" rel="external">Reference Here</a><br>个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debian也是可以的, <a href="http://www.zhihu.com/question/36287908" target="_blank" rel="external">Reference Here</a></p>
+<p><strong>apt-get install g++</strong> ( 目的是为了build protobuf )</p>
 <p>安装 protobuf，这是强制性的, 不然无法成功的build。protobuf-2.5.0.tar.gz ( 在Ubuntu14.04 和 CentOS 7 下均可以使用,已测试）protobuf需要配置环境变量</p>
 <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
 <p>Hadoop使用 Protobuf 去做序列化的一些事情，比如用在了RPC以及 Namenode 的 FSImage 的 Serialization &amp; Deserialization的过程中<br>对于RPC，【Hadoop里面采用Java的动态代理和JavaNIO实现】【顺便再说下【DFSClient去访问Namenode的时候也采用了Java的动态代理去实现的，创建了Namenode的代理类】】<br>jdk 1.7 &amp; maven (换成自己公司的maven仓库，如果用别的代理，可能会出现 tomcat下载不成功，需要手动的去 wget 到指定的位置，2处即可）<br>Windows 7 下面 build <a href="http://stackoverflow.com/questions/31396991/problems-building-hadoop-3-0-0-snapshot-on-windows-7-64-bits-and-java-8-and-mave/31403918#31403918" target="_blank" rel="external">Reference Here</a></p>
