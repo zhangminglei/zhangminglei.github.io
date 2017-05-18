@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hadoop," />
 
 
 
@@ -91,13 +91,19 @@
 
 
 <meta name="description" content="junit -&amp;gt; Command -&amp;gt; 单机 -&amp;gt; 集群软硬件环境Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) Reference Here个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debi">
+<meta name="keywords" content="hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop 源码环境搭建开发与调试">
 <meta property="og:url" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="junit -&amp;gt; Command -&amp;gt; 单机 -&amp;gt; 集群软硬件环境Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) Reference Here个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debi">
 <meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/1.jpg">
-<meta property="og:updated_time" content="2017-05-18T16:01:25.214Z">
+<meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/6.jpg">
+<meta property="og:updated_time" content="2017-05-18T16:16:05.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop 源码环境搭建开发与调试">
 <meta name="twitter:description" content="junit -&amp;gt; Command -&amp;gt; 单机 -&amp;gt; 集群软硬件环境Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) Reference Here个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debi">
@@ -375,28 +381,34 @@
 </code></pre>
 
 <p>接下来，去 hadoop-dist 目录下把 build 出来的 tar包发布到你想要的位置并解压。然后格式化 Namenode  hdfs namenode -format ,格式化成功后，会有 Existing with Status 0,否则是1，关于什么时候需要格式化Namenode，根据需要来定，当然第一次使用 HDFS 是肯定需要格式化 Namenode的，就相当于你第一次使用计算机一样，需要格式化磁盘的。这里面记录了文件系统上面的一些最基本的 metadata。比如：NamespaceID, layoutVersion , storageType, etc.<br>当然在格式化之前，你需要去配置一些信息，当然这也是根据你的需求来定的，在这里，需要有2个配置文件需要进行修改，一个是hdfs-site.xml，修改这个配置文件的作用是指定NN和DN在文件系统上的作用，包括但不限于 replication factor 以及blocksize 的设置。<br>另外一个配置文件是指core-site.xml，初次配置只需要简单的如下设置</p>
-<configuration>
+<xml><br><br>    configuration&gt;<br>     <property><br>         <name>fs.default.name</name><br>         <value>hdfs://localhost:9000</value><br>     </property><br>    <br></xml><br>此时，再去sbin下面启动文件系统，生成 datanode文件夹，关于启动文件系统，做了哪些事情，可以参考这篇 <a href="http://blog.csdn.net/lskyne/article/details/8843388#t1" target="_blank" rel="external">Blog</a> ，重点看 BlockMap的构建。<br>最后启动文件系统 sbin/start-dfs.sh，在浏览器中 输入 localhost:50070 即可看到界面<br><br>## Debug Namenode<br><br>OK, 下面来说明如何调试 hadoop 源码，这样对 hadoop 会有更好的理解，在调试之间，得保证一点的是，你的binary要求和你的源码是一致的，而且不能改动源码，如果改动源码，那么需要 rebuild 重新生成生成 binary, 在 IntelliJ IDEA 里面打开你的 hadoop 源码，<br><br>Run -&gt; Edit Configurations -&gt; Add Remote<br><br>在 <code>Configuration Tab</code> 里面把 <code>Command Line arguments for running remote  JVM</code> 里面的那一行复制出来  <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</code> , 然后需要把 <code>suspend = n</code>  修改成 <code>y</code> , 修改这个参数的目的是 启动 hdfs 的时候, 它会挂起在任何你想要 debug namenode 的地方,并且在 5005 端口进行监听 。OK , 根据自己的经验, 一般这样去 Debug Hadoop Namenode 源码太耗时, 后面会介绍根据 MiniCluster 来 Debug Namenode源码。当然 MiniCluster必须跑在 Linux 上, Windows上是跑不了的。<br><br>修改配置文件 <code>hadoop-env.sh</code>, 添加如下参数<br><br>Set JMX options<br><br><pre><code>export HADOOP_NAMENODE_OPTS=”-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1026 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005”<br></code></pre><br><br>接下来，如果你有一个需求，就是想知道在格式化 Namenode 的时候, hadoop是如何一步步的生成FSImage &amp; EditLog 以及一些基本的 Metadata元数据的，比如 namespaceID, cluster-ID, layoutVersion ( 我所见到的 layoutVersion 有 -63, -60 )<br><br>First Step : 如果你的current 目录下有 Namenode 和 Datanode 文件夹，请 rm -rf<br><br>Second Step : hdfs namenode -format , 此时, JVM 会挂起并在port 5005进行侦听 :<br>Listening for transport dt_socket at address : 5005<br><br>Third Step : Set Breakpoints.<br><br>Fourth Step : Intellij -&gt; Run -&gt; Debug ‘hadoop’ , 如果断点设置正确, 那么会走到你想要的地方. 比如格式化文件系统, 是 Serialization Metadata到磁盘上, 如果你在 load的地方进行设置断点, 那么 JVM 肯定会 Disconnected, 便得不到你想要的结果。<br><br>以上四步如果一切正确, 会看如下界面, 然后就和正常的调试一样去调试 hadoop 源码了.<br><br><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/1.jpg" alt="logo"><br><br><br>##Debug SecondaryNamenode<br><br>以上介绍的是调试 NameNode 的方法，如果想调试 SecondaryNamenode的话, 那么得换成如下的参数<br><pre><code>export HADOOP_SECONDARYNAMENODE_OPTS=”-Dhadoop.security.logger=INFO,RFAS -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005”</code></pre><br><br>SecondaryNamenode 主要做的是 Checkpoint, 为了方便调试 SecondaryNamenode, 需要在 hdfs-site.xml 里面加入一个 property, 因为hadoop默认做 一次checkpoint的时间周期是3600秒, 所以在这里，把其设置成3秒做一次 checkpoint, 如下<br><xml><br><br>    <property><br>      <name>dfs.namenode.checkpoint.period</name><br>      <value>3</value><br>    </property><br></xml>
 
-<pre><code>&lt;property&gt;
-    &lt;name&gt;fs.default.name&lt;/name&gt;
-    &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><p></p></configuration><br>此时，再去sbin下面启动文件系统，生成 datanode文件夹，关于启动文件系统，做了哪些事情，可以参考这篇 <a href="http://blog.csdn.net/lskyne/article/details/8843388#t1" target="_blank" rel="external">Blog</a> ，重点看 BlockMap的构建。<br>最后启动文件系统 sbin/start-dfs.sh，在浏览器中 输入 localhost:50070 即可看到界面<p></p>
-<h2 id="Debug-Namenode"><a href="#Debug-Namenode" class="headerlink" title="Debug Namenode"></a>Debug Namenode</h2><p>OK, 下面来说明如何调试 hadoop 源码，这样对 hadoop 会有更好的理解，在调试之间，得保证一点的是，你的binary要求和你的源码是一致的，而且不能改动源码，如果改动源码，那么需要 rebuild 重新生成生成 binary, 在 IntelliJ IDEA 里面打开你的 hadoop 源码，</p>
-<p>Run -&gt; Edit Configurations -&gt; Add Remote </p>
-<p>在 <code>Configuration Tab</code> 里面把 <code>Command Line arguments for running remote  JVM</code> 里面的那一行复制出来  <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</code> , 然后需要把 <code>suspend = n</code>  修改成 <code>y</code> , 修改这个参数的目的是 启动 hdfs 的时候, 它会挂起在任何你想要 debug namenode 的地方,并且在 5005 端口进行监听 。OK , 根据自己的经验, 一般这样去 Debug Hadoop Namenode 源码太耗时, 后面会介绍根据 MiniCluster 来 Debug Namenode源码。当然 MiniCluster必须跑在 Linux 上, Windows上是跑不了的。</p>
-<p>修改配置文件 <code>hadoop-env.sh</code>, 添加如下参数</p>
-<p>Set JMX options</p>
-<pre><code>export HADOOP_NAMENODE_OPTS="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1026 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
-</code></pre>
+<p>OK, 然后 bin/start-dfs.sh 启动文件系统，程序会走到如下的位置</p>
+<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/2.jpg" alt="logo"></p>
+<p>##Debug Hadoop Command</p>
+<p>当然在HDFS在hadoop生态系统的地位主要是存储数据, 所以接下来, 我们来看一个如何调试上传一个文件到HDFS上, OK, 由于 hadoop 的代码比较庞大, 而且put一个文件到hdfs上面的复杂程度远远大于get一个文件从hdfs到local disk. 关键的问题是你不知道put会走到哪些类的哪些方法, 所以我们可以采取一种办法来试着解决这件事情, 查看 put 的 stacktrace.</p>
+<p>First Step : generate a very large file on disk ( 12GB )  by using dd if=/dev/zero of=/root/12GB.img bs=1G count=12</p>
+<p>Second Step : hdfs dfs -put 12GB.img /12GB_1</p>
+<p>Third Step : use jstack <pid> and you will see following outputs</pid></p>
+<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/3.jpg" alt="logo"></p>
+<p>接下来 , 就知道该从哪里调试 put 源码了, 由于 put 一个文件到 hdfs 上的过程过于复杂, 就不一个一个的去 Debu g里面的过程, 在此只演示一下上传文件的入口程序调试。</p>
+<p>First Step: HADOOP_OPTS  extra Java runtime options for all Hadoop commands, including (-put, -get, -mkdir etc)</p>
+<pre><code>export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"</code></pre>
 
-<p>接下来，如果你有一个需求，就是想知道在格式化 Namenode 的时候, hadoop是如何一步步的生成FSImage &amp; EditLog 以及一些基本的 Metadata元数据的，比如 namespaceID, cluster-ID, layoutVersion ( 我所见到的 layoutVersion 有 -63, -60 )</p>
-<p>First Step : 如果你的current 目录下有 Namenode 和 Datanode 文件夹，请 rm -rf </p>
-<p>Second Step : hdfs namenode -format , 此时, JVM 会挂起并在port 5005进行侦听 :<br>Listening for transport dt_socket at address : 5005</p>
-<p>Third Step : Set Breakpoints.</p>
-<p>Fourth Step : Intellij -&gt; Run -&gt; Debug ‘hadoop’ , 如果断点设置正确, 那么会走到你想要的地方. 比如格式化文件系统, 是 Serialization Metadata到磁盘上, 如果你在 load的地方进行设置断点, 那么 JVM 肯定会 Disconnected, 便得不到你想要的结果。</p>
-<p>以上四步如果一切正确, 会看如下界面, 然后就和正常的调试一样去调试 hadoop 源码了.</p>
-<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/1.jpg" alt="logo"></p>
+<p>Second Step: hdfs dfs -put 12GB.img /12GB_1 , OK , when you type this command, looks following</p>
+<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/4.jpg" alt="logo"></p>
+<p>Third Step: Debug -put</p>
+<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/5.jpg" alt="logo"></p>
+<p>##MiniCluster调试方式</p>
+<p>使用的测试类：TestStartup.java 这个类是针对Namenode的启动以及SecondaryNamenode做Checkpoint时候进行使用</p>
+<p><a href="https://github.com/apache/hadoop/blob/trunk/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/namenode/TestStartup.java" target="_blank" rel="external">https://github.com/apache/hadoop/blob/trunk/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/hdfs/server/namenode/TestStartup.java</a></p>
+<p>调试类： FSImageFormatProtobuf.java , 这个类负责 HDFS 镜像文件的 Serialization &amp; Deserialization 的过程</p>
+<p><a href="https://github.com/apache/hadoop/blob/trunk/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/namenode/FSImageFormatProtobuf.java" target="_blank" rel="external">https://github.com/apache/hadoop/blob/trunk/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/namenode/FSImageFormatProtobuf.java</a></p>
+<p>现在开始调试，不需要进行任何配置，简单方便</p>
+<p>First Step：Set Breakpoints</p>
+<p>Second Step ：运行测试类 TestStartup.java, 直接右键：Debug ‘TestStartup.java’</p>
+<p>然后如下图<br>OK, 同样可以实行调试。</p>
+<p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/6.jpg" alt="logo"></p>
 
       
     </div>
@@ -423,6 +435,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+        </div>
       
 
       
@@ -568,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#junit-gt-Command-gt-单机-gt-集群"><span class="nav-number">1.</span> <span class="nav-text">junit -> Command -> 单机 -> 集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软硬件环境"><span class="nav-number">1.1.</span> <span class="nav-text">软硬件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug-Namenode"><span class="nav-number">1.2.</span> <span class="nav-text">Debug Namenode</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#junit-gt-Command-gt-单机-gt-集群"><span class="nav-number">1.</span> <span class="nav-text">junit -> Command -> 单机 -> 集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软硬件环境"><span class="nav-number">1.1.</span> <span class="nav-text">软硬件环境</span></a></li></ol></li></ol></div>
             
 
           </div>
