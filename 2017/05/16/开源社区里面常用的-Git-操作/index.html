@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/3.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/4.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/5.png">
-<meta property="og:updated_time" content="2017-05-18T18:07:02.177Z">
+<meta property="og:updated_time" content="2017-05-18T18:08:48.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源社区里面常用的 Git 操作">
 <meta name="twitter:description" content="Git Commands in Github &amp;amp; Gitlab &amp;amp; Git [ 这篇文章不适合 Git 新手 ]最常用的 Git 操作命令 一般有 git add, git commit, git fetch, git rebase, git reset, git push, git branch, git log, git rm, git checkout, git remote">
@@ -359,24 +359,16 @@ git fetch 【公司】
 <pre><code>git rebase origin dev 【公司】
 git rebase upstream master 【社区】
 </code></pre>
-### git reset
 
-对于这个命令，我一般用它来 squash commit logs。 当然你也可以用 git rebase -i hashcode 去 squash logs, 不过用 rebase 的方式太过于麻烦。 所以用 ```git reset --soft HEAD~n``` [n belongs to a number], 当执行完这个命令后，不要忘记 ```git commit```, 不然你所有的改动将会丢失哦 ~ 小心点。
-
-我经常这样做：
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>对于这个命令，我一般用它来 squash commit logs。 当然你也可以用 git rebase -i hashcode 去 squash logs, 不过用 rebase 的方式太过于麻烦。 所以用 <code>git reset --soft HEAD~n</code> [n belongs to a number], 当执行完这个命令后，不要忘记 <code>git commit</code>, 不然你所有的改动将会丢失哦 ~ 小心点。</p>
+<p>我经常这样做：</p>
 <pre><code>git reset --soft HEAD~3
 git reset --soft HEAD~8
 </code></pre>
-### git push
-我一般用它完成本地代码推送到远程服务器上操作，还有就是新建一个分支，推送分支到远程服务器。
 
-### git log
-查看提交历史，我主要用来检查 rebase 是否成功，hashcode 的值是否和远程的一致，如果一致则说明 rebase 成功，如果不一致，说明 rebase 失败。
-
-
-### 社区操作的常用 7 个步骤，以 flink 为例
-
-**第一步**：
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>我一般用它完成本地代码推送到远程服务器上操作，还有就是新建一个分支，推送分支到远程服务器。</p>
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>查看提交历史，我主要用来检查 rebase 是否成功，hashcode 的值是否和远程的一致，如果一致则说明 rebase 成功，如果不一致，说明 rebase 失败。</p>
+<h3 id="社区操作的常用-7-个步骤，以-flink-为例"><a href="#社区操作的常用-7-个步骤，以-flink-为例" class="headerlink" title="社区操作的常用 7 个步骤，以 flink 为例"></a>社区操作的常用 7 个步骤，以 flink 为例</h3><p><strong>第一步</strong>：</p>
 <pre><code>git remote add upstream https://github.com/apache/flink</code></pre>
 
 <p><img src="/2017/05/16/开源社区里面常用的-Git-操作/1.png" alt="logo"></p>
@@ -570,7 +562,7 @@ git reset --soft HEAD~8
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Commands-in-Github-amp-Gitlab-amp-Git-这篇文章不适合-Git-新手"><span class="nav-number">1.</span> <span class="nav-text">Git Commands in Github & Gitlab & Git [ 这篇文章不适合 Git 新手 ]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add"><span class="nav-number">1.1.</span> <span class="nav-text">git add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-commit"><span class="nav-number">1.2.</span> <span class="nav-text">git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch"><span class="nav-number">1.3.</span> <span class="nav-text">git fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase"><span class="nav-number">1.4.</span> <span class="nav-text">git rebase</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Commands-in-Github-amp-Gitlab-amp-Git-这篇文章不适合-Git-新手"><span class="nav-number">1.</span> <span class="nav-text">Git Commands in Github & Gitlab & Git [ 这篇文章不适合 Git 新手 ]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add"><span class="nav-number">1.1.</span> <span class="nav-text">git add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-commit"><span class="nav-number">1.2.</span> <span class="nav-text">git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch"><span class="nav-number">1.3.</span> <span class="nav-text">git fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase"><span class="nav-number">1.4.</span> <span class="nav-text">git rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-reset"><span class="nav-number">1.5.</span> <span class="nav-text">git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-push"><span class="nav-number">1.6.</span> <span class="nav-text">git push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-log"><span class="nav-number">1.7.</span> <span class="nav-text">git log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社区操作的常用-7-个步骤，以-flink-为例"><span class="nav-number">1.8.</span> <span class="nav-text">社区操作的常用 7 个步骤，以 flink 为例</span></a></li></ol></li></ol></div>
             
 
           </div>
