@@ -999,18 +999,25 @@ git reset --soft HEAD~8
 
 ### git remote ###
 
-# 社区开发的最初的 7 个步骤 [以 Flink 为例 ]：
+# 社区开发的 7 个步骤 [以 Flink 为例 ]：
 
 **第一步**：
 <pre><code>git remote add upstream https://github.com/apache/flink</code></pre>
 
-<p><img src="/2017/05/16/开源社区里面常用的-Git-操作/1.jpg" alt="logo"></p>
+<p><img src="/2017/05/16/开源社区里面常用的-Git-操作/1.png" alt="logo"></p>
 <p>第一步如果加错了，可以执行如下的命令删除即可</p>
 <pre><code>git remote remove upstream</code></pre>
 
-
-
-
+<p><strong>第二步</strong>：</p>
+<p><pre><code>git remote -v</code></pre><br><img src="/2017/05/16/开源社区里面常用的-Git-操作/2.png" alt="logo"></p>
+<p><strong>第三步</strong>：</p>
+<p><pre><code>git fetch upstream master</code></pre><br><img src="/2017/05/16/开源社区里面常用的-Git-操作/3.png" alt="logo"></p>
+<p><strong>第四步</strong>：</p>
+<p><pre><code>git rebase upstream/master</code></pre><br><img src="/2017/05/16/开源社区里面常用的-Git-操作/4.png" alt="logo"></p>
+<p><strong>第五步</strong>：<br>git log 查看是否更新成功</p>
+<p><strong>第六步</strong>：</p>
+<p><pre><code>git push origin master</code></pre><br><img src="/2017/05/16/开源社区里面常用的-Git-操作/5.png" alt="logo"></p>
+<p><strong>第七步</strong>：<br>打开自己的 github 查看是否成功</p>
 
           
         
