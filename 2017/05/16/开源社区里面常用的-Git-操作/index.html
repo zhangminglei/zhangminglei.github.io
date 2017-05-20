@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/3.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/4.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/5.png">
-<meta property="og:updated_time" content="2017-05-20T06:23:21.189Z">
+<meta property="og:updated_time" content="2017-05-20T08:33:59.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源社区里面常用的 Git 操作">
 <meta name="twitter:description" content="Git Commands in Github &amp;amp; Gitlab &amp;amp; Git [ 这篇文章不适合 Git 新手 ] 最常用的 Git 操作命令 一般有 git add, git commit, git fetch, git rebase, git reset, git push, git branch, git log, git rm, git checkout, git remot">
@@ -362,6 +362,7 @@ git fetch 【公司】
 git rebase upstream/master 【社区】
 </code></pre>
 
+<p>rebase 做的事情可多了，比如你可以放弃已经提交后的代码的 commits, 可以压缩提交日志，可以修改提交日志的评论等等等等。</p>
 <h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>对于这个命令，我一般用它来 squash commit logs。 当然你也可以用 git rebase -i hashcode 去 squash logs, 不过用 rebase 的方式太过于麻烦。 所以用 <code>git reset --soft HEAD~n</code> [n belongs to a number], 当执行完这个命令后，不要忘记 <code>git commit</code>, 不然你所有的改动将会丢失哦 ~ 小心点。</p>
 <p>我经常这样做：</p>
 <pre><code>git reset --soft HEAD~3
