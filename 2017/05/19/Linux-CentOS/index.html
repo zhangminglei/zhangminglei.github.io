@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/19/Linux-CentOS/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamWo">
-<meta property="og:updated_time" content="2017-05-19T15:47:02.284Z">
+<meta property="og:updated_time" content="2017-05-20T02:25:56.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-CentOS">
 <meta name="twitter:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamWo">
@@ -346,7 +346,7 @@
 <li><p>Netcat 的安装，测试 Flink 的 <code>SocketTextStreamWordCount</code> 类的时候用。</p>
 <p>  <code>yum install -y nc</code> </p>
 </li>
-<li><p>停止 CentOS 的防火墙， 有的时候防火墙会导致你的程序运行不起来，而且会有一些莫名其妙的问题，之前在 Intel 的时候就遇过。</p>
+<li><p>停止 CentOS 的防火墙， 有的时候防火墙会导致你的程序运行不起来，而且会有一些莫名其妙的问题，之前在 Intel 的时候就遇过，多台机器互相通信失败，关闭防火墙后正常。</p>
 </li>
 <li><pre><code>service firewalld stop/status
 systemctl disable firewalld</code></pre>
