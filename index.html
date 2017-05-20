@@ -343,13 +343,13 @@
       
         
           
-            <p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面就说了 MapReduce 是一种编程模型，并且这种编程模型用来处理并生成大量的数据集。</p>
+            <p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面就说了 MapReduce 是一种编程模型，并且这种编程模型用来处理并生成大量的数据集。下面均为我个人对该论文的理解所写，如果有错，还希望指出。</p>
 <p>用户定义一个 map 函数用来处理 key/value pairs, 并且在处理结束后生成一个中间的 key/value pairs. 这很好理解，举例说明，假设我有如下的数据集。</p>
 <pre><code>sup sup
 duck duck thanks a bunch
 thanks a bunch</code></pre>
 
-<p>当把此编程模型的 map 函数用在该数据后，会产生如下的输出结果, 可以从下面的数据集看出来，括号内的第一个单词为 key , 第二个字母为该单词出现的次数。map 并不会对这些结果最汇总，只是单纯的对输入集做一个简单记录而已。每读到一个单词，就会标记一次，</p>
+<p>当把此编程模型的 map 函数用在该数据集后，会产生如下的输出结果, 可以从下面的数据集看出来，括号内的第一个单词为 key , 第二个字母为该单词出现的次数。map 并不会对这些结果最汇总，只是单纯的对输入集做一个简单记录而已。每读到一个单词，就会标记出现了一次。论文里把下面的数据集叫做 <strong>intermediate key/value pairs</strong>。接下来，MapReduce 函数的编程模型就会把该数据集发送给 reduce 函数。</p>
 <pre><code>(sup, 1)
 (sup, 1)
 (duck, 1)
@@ -362,8 +362,35 @@ thanks a bunch</code></pre>
 (a, 1)
 (brunch, 1)</code></pre>
 
+<p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上，而对于 key = duck 这样的数据在 B 机器上。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO开销。</p>
+<p>按照上面的说法，reduce 函数在处理之后，会产生如下的数据集, 这也是我们最后需要的结果。</p>
+<pre><code>(sup, 2)
+(duck, 3)
+(thanks, 2)
+(a, 2)
+(brunch, 2)
+</code></pre>
 
+<p>同样的，MapReduce 编程模型还可以用在很多别的场合，比如我需要统计网站不同网页的访问次数。</p>
+<p>map 函数用来处理每次用来请求的地址，并且输出 (URL, 1)， 比如下面的：</p>
+<pre><code>(http://www.vip.com/, 1)
+(http://www.vip.com/, 1)
+(http://kid.vip.com/, 1)
+(http://act.vip.com/22263.html, 1)
+...
+...
+</code></pre>
 
+<p>再经过 reduce 函数输出最后的统计结果</p>
+<pre><code>(http://www.vip.com/, 2)
+(http://kid.vip.com/, 1)
+(http://act.vip.com/22263.html, 1)
+...
+...
+</code></pre>
+
+<p>下面来看下 MapReduce 编程模型的执行图</p>
+<p><img src="/2017/05/20/MapReduce-论文读后感/1.png" alt="logo"></p>
 
           
         
