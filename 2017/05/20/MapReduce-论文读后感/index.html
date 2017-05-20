@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="如何去读一篇论文阅读论文与阅读博客和小说不一样，以下提供了一些链接，告诉你如何去阅读一篇论文。  How to read an academic article Advice on reading academic papers How to read and understand a scientific paper Should I Read Papers? The Refreshingly">
 <meta property="og:image" content="http://yoursite.com/2017/05/20/MapReduce-论文读后感/1.jpg">
-<meta property="og:updated_time" content="2017-05-20T04:25:38.302Z">
+<meta property="og:updated_time" content="2017-05-20T04:28:37.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MapReduce 论文读后感">
 <meta name="twitter:description" content="如何去读一篇论文阅读论文与阅读博客和小说不一样，以下提供了一些链接，告诉你如何去阅读一篇论文。  How to read an academic article Advice on reading academic papers How to read and understand a scientific paper Should I Read Papers? The Refreshingly">
@@ -369,7 +369,7 @@ thanks a bunch</code></pre>
 (a, 1)
 (brunch, 1)</code></pre>
 
-<p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个极端思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上 [中国]，而对于 key = duck 这样的数据在 B 机器上 [澳大利亚]。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO 开销以及带来各种问题，当然还有很多别的问题都会产生，比如时钟的问题，见这篇论文 <a href="">Time, Clocks, and the Ordering of Events in a Distributed System</a>，海底电缆被鲨鱼咬断等等等等各种问题，这也就是分布式系统领域困难的地方。</p>
+<p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个极端思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上 [中国]，而对于 key = duck 这样的数据在 B 机器上 [澳大利亚]。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO 开销以及带来各种问题，当然还有很多别的问题都会产生，比如时钟的问题，见这篇论文 <a href="https://zhangminglei.github.io/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-%E8%AF%BB%E5%90%8E%E6%84%9F/" target="_blank" rel="external">Time, Clocks, and the Ordering of Events in a Distributed System</a>，海底电缆被鲨鱼咬断等等等等各种问题，这也就是分布式系统领域困难的地方。</p>
 <p>按照上面的说法，reduce 函数在处理之后，会产生如下的数据集, 这也是我们最后需要的结果。</p>
 <pre><code>(sup, 2)
 (duck, 3)
