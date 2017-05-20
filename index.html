@@ -486,7 +486,7 @@
 <p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面就说了 MapReduce 是一种编程模型，并且这种编程模型用来处理并生成大量的数据集。下面均为我个人对该论文的理解所写，如果有错，还希望指出。</p>
 <p>用户定义一个 map 函数用来处理 key/value pairs, 并且在处理结束后生成一个中间的 key/value pairs. 这很好理解，举例说明，假设我有如下的数据集。</p>
 <pre><code>sup sup
-duck duck thanks a bunch
+duck duck duck thanks a bunch
 thanks a bunch</code></pre>
 
 <p>当把此编程模型的 map 函数用在该数据集后，会产生如下的输出结果, 可以从下面的数据集看出来，括号内的第一个单词为 key , 第二个字母为该单词出现的次数。map 并不会对这些结果最汇总，只是单纯的对输入集做一个简单记录而已。每读到一个单词，就会标记出现了一次。论文里把下面的数据集叫做 <strong>intermediate key/value pairs</strong>。接下来，MapReduce 函数的编程模型就会把该数据集发送给 reduce 函数。</p>
@@ -1137,7 +1137,7 @@ systemctl disable firewalld</code></pre>
 <p><br></p>
 <blockquote>
 <p>Hewitt C. Actor Model of Computation: Scalable Robust Information Systems</p>
-<p>Time, Clocks, and the Ordering of Events in a Distributed System</p>
+<p><a href="https://zhangminglei.github.io/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-%E8%AF%BB%E5%90%8E%E6%84%9F/" target="_blank" rel="external">Time, Clocks, and the Ordering of Events in a Distributed System</a></p>
 <p>XORing Elephants : Novel Erasure Codes for Big Data</p>
 <p>Kafka: a Distributed Messaging System for Log Processing</p>
 <p>Hive: A Warehousing Solution Over a Map-Reduce Framework</p>
