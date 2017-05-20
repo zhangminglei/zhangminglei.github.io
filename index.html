@@ -1593,7 +1593,7 @@ systemctl disable firewalld</code></pre>
 <h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><p>每天早上打开电脑的第一件事，一般就是执行该命令。</p>
 <p>我经常这样做：</p>
 <pre><code>git fetch upstream master 【社区】
-git fetch 【公司】
+git fetch 【公司】，因为公司里面一个项目的分支不会很多，而且也不会很大一般来说，所以不加参数。
 </code></pre>
 
 <h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>每天早上打开电脑的第二件事，一般就是执行这条命令；但是你可以不立马这样做，什么时候做呢？在你提交到远程分支之前进行 rebase, 如果开发的 patch 比较大，那么需要定期 rebase 远程分支代码到本地开发分支，不然最后一次性 rebase 容易导致爆炸性冲突，麻烦呢。 所以养成定期 rebase 的习惯不失为一件坏事情。</p>
