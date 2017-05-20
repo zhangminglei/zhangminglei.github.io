@@ -343,7 +343,27 @@
       
         
           
-            <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面</p>
+            <p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面就说了 MapReduce 是一种编程模型，并且这种编程模型用来处理并生成大量的数据集。</p>
+<p>用户定义一个 map 函数用来处理 key/value pairs, 并且在处理结束后生成一个中间的 key/value pairs. 这很好理解，举例说明，假设我有如下的数据集。</p>
+<pre><code>sup sup
+duck duck thanks a bunch
+thanks a bunch</code></pre>
+
+<p>当把此编程模型的 map 函数用在该数据后，会产生如下的输出结果, 可以从下面的数据集看出来，括号内的第一个单词为 key , 第二个字母为该单词出现的次数。map 并不会对这些结果最汇总，只是单纯的对输入集做一个简单记录而已。每读到一个单词，就会标记一次，</p>
+<pre><code>(sup, 1)
+(sup, 1)
+(duck, 1)
+(duck, 1)
+(duck, 1)
+(thanks, 1)
+(a, 1)
+(brunch, 1)
+(thanks, 1)
+(a, 1)
+(brunch, 1)</code></pre>
+
+
+
 
           
         
@@ -939,7 +959,7 @@ systemctl disable firewalld</code></pre>
       
         
           
-            <h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://paperswelove.org/images/logo-top.svg" alt="Papers We Love"></h2><h3 id="如何去读一篇论文"><a href="#如何去读一篇论文" class="headerlink" title="如何去读一篇论文"></a>如何去读一篇论文</h3><p>阅读论文与阅读博客和小说不一样，以下提供了一些链接，教你如何去阅读一篇论文。</p>
+            <h3 id="如何去读一篇论文"><a href="#如何去读一篇论文" class="headerlink" title="如何去读一篇论文"></a>如何去读一篇论文</h3><p>阅读论文与阅读博客和小说不一样，以下提供了一些链接，教你如何去阅读一篇论文。</p>
 <ul>
 <li><a href="http://organizationsandmarkets.com/2010/08/31/how-to-read-an-academic-article/" target="_blank" rel="external">How to read an academic article</a></li>
 <li><a href="http://www4.ncsu.edu/~akmassey/posts/2012-02-15-advice-on-reading-academic-papers.html" target="_blank" rel="external">Advice on reading academic papers</a></li>
@@ -1222,13 +1242,9 @@ systemctl disable firewalld</code></pre>
 
 </li>
 </ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6399"><a href="#https-issues-apache-org-jira-browse-FLINK-6399" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6399"></a><a href="https://issues.apache.org/jira/browse/FLINK-6399" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6399</a></h3><ul>
-<li><font color="#0099ff">Update default Hadoop download version</font>
-
-</li>
-</ul>
 <h3 id="https-issues-apache-org-jira-browse-FLINK-6311"><a href="#https-issues-apache-org-jira-browse-FLINK-6311" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6311"></a><a href="https://issues.apache.org/jira/browse/FLINK-6311" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6311</a></h3><ul>
 <li><font color="#0099ff">NPE in FlinkKinesisConsumer if source was closed before run</font>
+
 
 </li>
 </ul>
@@ -1243,7 +1259,13 @@ systemctl disable firewalld</code></pre>
 </li>
 </ul>
 <h3 id="https-issues-apache-org-jira-browse-FLINK-6104"><a href="#https-issues-apache-org-jira-browse-FLINK-6104" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6104"></a><a href="https://issues.apache.org/jira/browse/FLINK-6104" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6104</a></h3><ul>
-<li><font color="#0099ff">Resource leak in ListViaRangeSpeedMiniBenchmark</font></li>
+<li><font color="#0099ff">Resource leak in ListViaRangeSpeedMiniBenchmark</font>
+
+
+</li>
+</ul>
+<h3 id="https-issues-apache-org-jira-browse-FLINK-6399"><a href="#https-issues-apache-org-jira-browse-FLINK-6399" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6399"></a><a href="https://issues.apache.org/jira/browse/FLINK-6399" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6399</a></h3><ul>
+<li><font color="#0099ff">Update default Hadoop download version</font></li>
 </ul>
 
           
