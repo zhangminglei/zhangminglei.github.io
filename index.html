@@ -499,10 +499,10 @@ thanks a bunch</code></pre>
 (duck, 1)
 (thanks, 1)
 (a, 1)
-(brunch, 1)
+(bunch, 1)
 (thanks, 1)
 (a, 1)
-(brunch, 1)</code></pre>
+(bunch, 1)</code></pre>
 
 <p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个极端思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上 [中国]，而对于 key = duck 这样的数据在 B 机器上 [澳大利亚]。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO 开销以及带来各种问题，当然还有很多别的问题都会产生，比如时钟的问题，见这篇论文 <a href="https://zhangminglei.github.io/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-%E8%AF%BB%E5%90%8E%E6%84%9F/" target="_blank" rel="external">Time, Clocks, and the Ordering of Events in a Distributed System</a>，海底电缆被鲨鱼咬断等等等等各种问题，这也就是分布式系统领域困难的地方。</p>
 <p>按照上面的说法，reduce 函数在处理之后，会产生如下的数据集, 这也是我们最后需要的结果。</p>
@@ -510,7 +510,7 @@ thanks a bunch</code></pre>
 (duck, 3)
 (thanks, 2)
 (a, 2)
-(brunch, 2)
+(bunch, 2)
 </code></pre>
 
 <p>同样的，MapReduce 编程模型还可以用在很多别的场合，比如我需要统计网站不同网页的访问次数。</p>
@@ -550,14 +550,14 @@ thanks a bunch</code></pre>
 (a, 1)
 (a, 1) // hash("a") mod R = 12 [假设等于 12，那么被分配到 12 号机器上，已经落地]
 
-(brunch, 1)
-(brunch, 1)
-(brunch, 1) // hash("brunch") mod R = 9 [假设等于 9，那么被分配到 9 号机器上，已经落地]</code></pre>
+(bunch, 1)
+(bunch, 1)
+(bunch, 1) // hash("bunch") mod R = 9 [假设等于 9，那么被分配到 9 号机器上，已经落地]</code></pre>
 
 <p>接下来，Master 结点告诉 reduce worker 所需要的数据在什么位置，然后 reduce worker 使用 RPC 机制去读取数据。reduce worker 对于每一个遇到的中间结果的 key 以及对应的 value 的集合发送给 reduce 函数。reduce 函数执行后的结果数据集为</p>
 <pre><code>(duck, 3)
 (a, 2)
-(brunch, 3)</code></pre>
+(bunch, 3)</code></pre>
 
 <p>到此结束。</p>
 <h4 id="简单扩展下这里的-hash-key-mod-R"><a href="#简单扩展下这里的-hash-key-mod-R" class="headerlink" title="简单扩展下这里的 hash(key) mod R"></a>简单扩展下这里的 <strong><em>hash(key) mod R</em></strong></h4><p>在这篇论文里，默认的分区函数采用的是 <strong><em>hash(key) mod R</em></strong>，这样产生的结果倾向于一个非常平衡的分区，从而不会导致数据发送倾斜。假设此时有另一个需求，我们需要所有来自同一个主机的 URL 的请求最后全部落入同一个机器的同一个文件中，那么就可以把该 hash 函数设计成 <strong><em>hash(Hostname(urlkey)) mod R</em></strong>, 这样来自于同一台机器的 url 请求的所有计算结果落入同一台机器中。</p>
