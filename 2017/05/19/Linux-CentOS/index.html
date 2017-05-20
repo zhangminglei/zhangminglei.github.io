@@ -90,17 +90,19 @@
 
 
 
-<meta name="description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamWo">
+<meta name="description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamW">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-CentOS">
 <meta property="og:url" content="http://yoursite.com/2017/05/19/Linux-CentOS/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
-<meta property="og:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamWo">
-<meta property="og:updated_time" content="2017-05-20T02:25:56.650Z">
+<meta property="og:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamW">
+<meta property="og:image" content="http://yoursite.com/2017/05/19/Linux-CentOS/1.jpg">
+<meta property="og:updated_time" content="2017-05-20T15:01:07.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-CentOS">
-<meta name="twitter:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamWo">
+<meta name="twitter:description" content="背景 由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。   cat worker.log.8 | grep ERROR &amp;gt; /tmp/error.txt  Netcat 的安装，测试 Flink 的 SocketTextStreamW">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/19/Linux-CentOS/1.jpg">
 
 
 
@@ -339,7 +341,8 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+        <p><img src="/2017/05/19/Linux-CentOS/1.jpg" alt="logo"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li><p>由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。</p>
 <p>  <code>cat worker.log.8 | grep ERROR &gt; /tmp/error.txt</code></p>
 </li>
