@@ -264,6 +264,128 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/" itemprop="url">Time, Clocks, and the Ordering of Events in a Distributed System 读后感</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T12:23:15+08:00">
+                2017-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/20/MapReduce-论文读后感/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -362,7 +484,7 @@ thanks a bunch</code></pre>
 (a, 1)
 (brunch, 1)</code></pre>
 
-<p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上，而对于 key = duck 这样的数据在 B 机器上。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO开销。</p>
+<p>reduce 函数在接受到上述的数据集后，就会做一件事，论文里面是这样说的：<strong>accepts an intermediate key i and a set of values for that key. It merges together these values to form a possibly smaller set of values.</strong> 按照这样的理解，对于 WordCount 这样的业务需求，我在 reduce 里面所做的事情应该就是把相同 key 的 value 进行合并，也就是说求和。<strong><font color="#FF0000">做一个极端思考:</font></strong> 假设此时，对于 key = sup 这样的数据在 A 机器上 [中国]，而对于 key = duck 这样的数据在 B 机器上 [澳大利亚]。那么在做最后结果汇总的时候就难免会因为网络传输所带来的序列化和反序列化的操作，那么这样会造成很大的 IO 开销以及带来各种问题，当然还有很多别的问题都会产生，比如时钟的问题，见这篇论文 <a href="">Time, Clocks, and the Ordering of Events in a Distributed System</a>，海底电缆被鲨鱼咬断等等等等各种问题，这也就是分布式系统领域困难的地方。</p>
 <p>按照上面的说法，reduce 函数在处理之后，会产生如下的数据集, 这也是我们最后需要的结果。</p>
 <pre><code>(sup, 2)
 (duck, 3)
@@ -1535,7 +1657,7 @@ git reset --soft HEAD~8
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
