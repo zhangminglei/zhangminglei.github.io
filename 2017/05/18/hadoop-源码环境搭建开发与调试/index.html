@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/5.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/6.jpg">
-<meta property="og:updated_time" content="2017-05-20T15:51:15.723Z">
+<meta property="og:updated_time" content="2017-05-21T09:02:36.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop 源码环境搭建开发与调试">
 <meta name="twitter:description" content="软硬件环境Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) Reference Here个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debian也是可以的, Reference Here apt-get inst">
@@ -364,6 +364,7 @@
 <p>安装 protobuf，这是强制性的, 不然无法成功的build。protobuf-2.5.0.tar.gz ( 在Ubuntu14.04 和 CentOS 7 下均可以使用,已测试）protobuf需要配置环境变量</p>
 <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
 <p>Hadoop使用 Protobuf 去做序列化的一些事情，比如用在了RPC以及 Namenode 的 FSImage 的 Serialization &amp; Deserialization的过程中<br>对于RPC，Hadoop 里面采用 Java的动态代理和 JavaNIO 实现【顺便说下【DFSClient去访问 Namenode 的时候也采用了Java的动态代理去实现的，创建了 Namenode 的代理类】】<br>jdk 1.7 &amp; maven (换成自己公司的maven仓库，如果用别的代理，可能会出现 tomcat下载不成功，需要手动的去 wget 到指定的位置，2处即可）<br>Windows 7 下面 build <a href="http://stackoverflow.com/questions/31396991/problems-building-hadoop-3-0-0-snapshot-on-windows-7-64-bits-and-java-8-and-mave/31403918#31403918" target="_blank" rel="external">Reference Here</a></p>
+<a id="more"></a>
 <h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><p><strong>First Step</strong>: git clone <a href="https://github.com/apache/hadoop" target="_blank" rel="external">https://github.com/apache/hadoop</a> </p>
 <p><strong>Second Step</strong>:  <pre><code>mvn package –Pdist –DskipTests –Dtar</code></pre></p>
 <p>最后你可以看到 如下信息，如果一切顺利。</p>

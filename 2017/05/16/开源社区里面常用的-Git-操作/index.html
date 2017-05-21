@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/3.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/4.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/16/开源社区里面常用的-Git-操作/5.png">
-<meta property="og:updated_time" content="2017-05-20T09:36:56.798Z">
+<meta property="og:updated_time" content="2017-05-21T09:03:24.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源社区里面常用的 Git 操作">
 <meta name="twitter:description" content="Git Commands in Github &amp;amp; Gitlab &amp;amp; Git [ 这篇文章不适合 Git 新手 ] 最常用的 Git 操作命令 一般有 git add, git commit, git fetch, git rebase, git reset, git push, git branch, git log, git rm, git checkout, git remot">
@@ -367,6 +367,7 @@
 git fetch 【公司】，因为公司里面一个项目的分支不会很多，而且也不会很大一般来说，所以不加参数。
 </code></pre>
 
+<a id="more"></a>
 <h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>每天早上打开电脑的第二件事，一般就是执行这条命令；但是你可以不立马这样做，什么时候做呢？在你提交到远程分支之前进行 rebase, 如果开发的 patch 比较大，那么需要定期 rebase 远程分支代码到本地开发分支，不然最后一次性 rebase 容易导致爆炸性冲突，麻烦呢。 所以养成定期 rebase 的习惯不失为一件坏事情。</p>
 <p>我经常这样做：</p>
 <pre><code>git rebase origin/dev 【公司】
