@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/3.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/2.jpg">
-<meta property="og:updated_time" content="2017-05-21T13:14:32.644Z">
+<meta property="og:updated_time" content="2017-05-21T13:16:57.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Time, Clocks, and the Ordering of Events in a Distributed System 读后感">
 <meta name="twitter:description" content="如何去读一篇论文 阅读论文与阅读博客和小说不一样，以下提供了一些链接，请看呢。  How to read an academic article Advice on reading academic papers How to read and understand a scientific paper Should I Read Papers? The Refreshingly Rewardin">
@@ -378,7 +378,7 @@
 <center><a href="https://en.wikipedia.org/wiki/Partially_ordered_set" target="_blank" rel="external">该图引用自维基百科</a></center>
 
 <p><br></p>
-<p>如图，翻译成中文叫做 <strong>哈斯图</strong> ，用来表示一个 <strong>有序的</strong> 偏序集合。 从图中可以看出，对于 <strong>{x, y}</strong> 集合的三个子集 <strong>{Φ}, {x}, {y}</strong> 在哈斯图中是以一定的顺序去排序的。 并把该图记作：<strong>(<em>*</em></strong>S<strong>*</strong>, ≤)<strong> 。其中 </strong>S<strong> 为这个图中的集合点，</strong>≤<strong> 表示顺序关系。 [ *</strong>插入一句题外话，其实我们在日常计算机程序的开发中，可以把这里的 <strong><em>S</em></strong> 看成是比如一个对文件系统操作的类，而这里的 <strong><em>≤</em></strong> 就可以看成是该类具有的操作，比如读取文件、上传文件、求文件大小、求 Block 数，等等<strong>* ] 。 如果有 </strong>(x &lt; y)<strong>，那么就把这种情况叫做 </strong>y<strong> 覆盖 </strong>x<strong>。 绘制从 </strong>x** 向上的线段或曲线。</p>
+<p>如图，翻译成中文叫做 <strong>哈斯图</strong> ，用来表示一个 <strong>有序的</strong> 偏序集合。 从图中可以看出，对于 <strong>{x, y}</strong> 集合的三个子集 <strong>{Φ}, {x}, {y}</strong> 在哈斯图中是以一定的顺序去排序的。 并把该图记作：<strong>(*</strong>S<strong><em>, </em></strong>≤<strong>*)</strong> 。其中 <strong>S</strong> 为这个图中的集合点，<strong>≤</strong> 表示顺序关系。 [ <strong><font color="#8A2BE2">插入一句题外话，其实我们在日常计算机程序的开发中，可以把这里的 *</font></strong>S<strong><em> 看成是比如一个对文件系统操作的类，而这里的 </em></strong>≤<strong>* 就可以看成是该类具有的操作，比如读取文件、上传文件、求文件大小、求 Block 数，等等</strong> ] 。 如果有 <strong>(x &lt; y)</strong>，那么就把这种情况叫做 <strong>y</strong> 覆盖 <strong>x</strong>。 绘制从 <strong>x</strong> 向上的线段或曲线。</p>
 <p>所以针对上面的两张图，其中对于第二张图，显然，<strong>(Φ &lt; x)</strong>，<strong>(Φ &lt; y)</strong>，<strong>(x &lt; (x,y))</strong>等等。 同样，这也是一个空间上的图，有 <strong>((x,z) &lt; (x,y,z))</strong>。这样的一个图，也叫做偏序，英文叫做 ： <strong><em>partial order</em></strong>，其中 <strong>partial</strong> 翻译成中文的意思是：局部的意思，那么这个局部到底该怎么理解? 这里的意思是，在这个 <strong><em>S</em></strong> 的集合中，<strong><font color="#FF0000">并不是每对元素都具有可比性</font></strong>，这是很显然的。 所以综上所述，<strong>哈斯图</strong> 是一个用来表示 <strong>有序的</strong> 偏序集合。 <strong><font color="#FF0000">先记住这个概念，论文后面用到了</font></strong>。</p>
 <a id="more"></a>
 <p>相反，与 <strong>partial order</strong> 对应的是 <strong>Total order</strong> ，即全序关系，也就是说，集合 <strong><em>S</em></strong> 中的每对元素都是可进行比较的。</p>
