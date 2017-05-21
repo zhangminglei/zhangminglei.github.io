@@ -656,6 +656,12 @@ thanks a bunch</code></pre>
 <p>在正式进入这篇论文之前，首先需要说明几个概念。</p>
 <blockquote>
 <p><strong><em>Hasse diagram</em></strong></p>
+</blockquote>
+<p><img src="/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/3.jpg" alt="引用维基百科"></p>
+<p><img src="/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/4.jpg" alt="引用维基百科"></p>
+<p>如图，翻译成中文叫做 <strong>哈斯图</strong> ，用来表示一个 <strong>有序的</strong> 偏序集合。 从图中可以看出，对于 <strong>{x, y}</strong> 集合的三个子集 <strong>{Φ}, {x}, {y}</strong> 在哈斯图中是以一定的顺序去排序的。 并把该图记作：<strong>(S, ≤)</strong> 。其中 <strong>S</strong> 为这个图中的集合点，<strong>≤</strong> 表示顺序关系。 如果有 <strong>(x &lt; y)</strong>，那么就把这种情况叫做 <strong>y</strong> 覆盖 <strong>x</strong>。 绘制从 <strong>x</strong> 向上的线段或曲线。</p>
+<p>所以针对上面的两张图，其中对于第二张图，显然，<strong>(Φ &lt; x)</strong>，<strong>(Φ &lt; y)</strong>，<strong>(x &lt; (x,y))</strong>等等。 同样，这也是一个空间上的图，有 <strong>((x,z) &lt; (x,y,z))</strong>。这样的一个图，也叫做偏序，英文叫做 ： <strong><em>partial order</em></strong>，其中 <strong>partial</strong> 翻译成中文的意思是：局部的意思， 所以这样就很好理解了。 所以 <strong>哈斯图</strong> 是用来表示一个 <strong>有序的</strong> 偏序集合。</p>
+<blockquote>
 <p><strong><em>partial ordering</em></strong></p>
 </blockquote>
 <p><img src="/2017/05/20/Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System-读后感/2.jpg" alt="logo"></p>
