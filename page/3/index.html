@@ -264,6 +264,297 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/19/Linux-CentOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/19/Linux-CentOS/" itemprop="url">Linux-CentOS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T23:32:22+08:00">
+                2017-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/19/Linux-CentOS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/19/Linux-CentOS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/19/Linux-CentOS/" class="leancloud_visitors" data-flag-title="Linux-CentOS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2017/05/19/Linux-CentOS/1.jpg" alt="logo"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li><p>由于线上集群的日志太大，每一个都 100 多 MB ，这样去 sz 下来的时候太耗时，所以用下面这样的简单方式去 download 日志，又因为生产环境的机器写文件有权限，所以只能往 tmp 目录下写文件。</p>
+<p>  <code>cat worker.log.8 | grep ERROR &gt; /tmp/error.txt</code></p>
+</li>
+<li><p>Netcat 的安装，测试 Flink 的 <code>SocketTextStreamWordCount</code> 类的时候用。</p>
+<p>  <code>yum install -y nc</code> </p>
+</li>
+<li><p>停止 CentOS 的防火墙， 有的时候防火墙会导致你的程序运行不起来，而且会有一些莫名其妙的问题，之前在 Intel 的时候就遇过，多台机器互相通信失败，关闭防火墙后正常。</p>
+</li>
+<li><pre><code>service firewalld stop/status
+systemctl disable firewalld</code></pre>
+
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/hadoop-源码环境搭建开发与调试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/18/hadoop-源码环境搭建开发与调试/" itemprop="url">hadoop 源码环境搭建开发与调试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T23:58:25+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/18/hadoop-源码环境搭建开发与调试/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/18/hadoop-源码环境搭建开发与调试/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/18/hadoop-源码环境搭建开发与调试/" class="leancloud_visitors" data-flag-title="hadoop 源码环境搭建开发与调试">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/2017/05/18/hadoop-源码环境搭建开发与调试/7.jpg" alt="logo"></p>
+<h2 id="软硬件环境"><a href="#软硬件环境" class="headerlink" title="软硬件环境"></a>软硬件环境</h2><p>Ubuntu 14.04 单机伪分布版本 ( 记得一定需要提升root权限,不然后患无穷【因为修改源码，有的文件是必须要有root权限的，有的文件不需要】, 除非你很喜欢使用 chown ) <a href="http://jingyan.baidu.com/article/5553fa82e3a1c565a23934c5.html" target="_blank" rel="external">Reference Here</a><br>个人笔记本下不建议安装 CentOS,  除非你喜欢噪音和各种驱动不支持 ，当然安装安装Debian也是可以的, <a href="http://www.zhihu.com/question/36287908" target="_blank" rel="external">Reference Here</a></p>
+<p><strong>apt-get install g++</strong> ( 目的是为了build protobuf )</p>
+<p>安装 protobuf，这是强制性的, 不然无法成功的build。protobuf-2.5.0.tar.gz ( 在Ubuntu14.04 和 CentOS 7 下均可以使用,已测试）protobuf需要配置环境变量</p>
+<p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
+<p>Hadoop使用 Protobuf 去做序列化的一些事情，比如用在了RPC以及 Namenode 的 FSImage 的 Serialization &amp; Deserialization的过程中<br>对于RPC，Hadoop 里面采用 Java的动态代理和 JavaNIO 实现【顺便说下【DFSClient去访问 Namenode 的时候也采用了Java的动态代理去实现的，创建了 Namenode 的代理类】】<br>jdk 1.7 &amp; maven (换成自己公司的maven仓库，如果用别的代理，可能会出现 tomcat下载不成功，需要手动的去 wget 到指定的位置，2处即可）<br>Windows 7 下面 build <a href="http://stackoverflow.com/questions/31396991/problems-building-hadoop-3-0-0-snapshot-on-windows-7-64-bits-and-java-8-and-mave/31403918#31403918" target="_blank" rel="external">Reference Here</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/18/hadoop-源码环境搭建开发与调试/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/读过的一些论文/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -371,319 +662,14 @@
 <p>Hive: A Warehousing Solution Over a Map-Reduce Framework</p>
 <p>ZooKeeper: Wait-free coordination for Internet-scale systems</p>
 <p><a href="https://zhangminglei.github.io/2017/05/20/MapReduce-%E8%AE%BA%E6%96%87%E8%AF%BB%E5%90%8E%E6%84%9F/" target="_blank" rel="external">MapReduce: Simplified Data Processing on Large Clusters</a></p>
+<p><a href="">Bigtable: A Distributed Storage System for Structured Data</a></p>
+<p><a href="">The Google File System</a></p>
 <p>f4：Facebook’s Warm BLOB Storage System</p>
 <p>Thrift: Scalable Cross-Language Services Implementation</p>
 <p>Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory   Cluster Computing</p>
 <p>The Google File System</p>
 <p>Spark: Cluster Computing with Working Sets</p>
 </blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/已经解决的-Hadoop-Jira/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rice.zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="明磊的技术网站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/已经解决的-Hadoop-Jira/" itemprop="url">已经解决的 Hadoop Jira</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T23:09:57+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/16/已经解决的-Hadoop-Jira/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/16/已经解决的-Hadoop-Jira/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/05/16/已经解决的-Hadoop-Jira/" class="leancloud_visitors" data-flag-title="已经解决的 Hadoop Jira">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="已经解决的-Hadoop-JIRA"><a href="#已经解决的-Hadoop-JIRA" class="headerlink" title="已经解决的 Hadoop JIRA"></a>已经解决的 Hadoop JIRA</h2><h3 id="https-issues-apache-org-jira-browse-MAPREDUCE-6729"><a href="#https-issues-apache-org-jira-browse-MAPREDUCE-6729" class="headerlink" title="https://issues.apache.org/jira/browse/MAPREDUCE-6729"></a><a href="https://issues.apache.org/jira/browse/MAPREDUCE-6729" target="_blank" rel="external">https://issues.apache.org/jira/browse/MAPREDUCE-6729</a></h3><ul>
-<li><font color="#0099ff">Accurately compute the test execute time in DFSIO</font>
-
-</li>
-</ul>
-<h3 id="Progress-Report-Bringing-Erasure-Coding-to-Apache-Hadoop"><a href="#Progress-Report-Bringing-Erasure-Coding-to-Apache-Hadoop" class="headerlink" title="Progress Report: Bringing Erasure Coding to Apache Hadoop"></a>Progress Report: Bringing Erasure Coding to Apache Hadoop</h3><ul>
-<li><font color="#0099ff">Minglei Zhang for performing concrete benchmark tests</font>
-</li>
-<li><p><a href="http://blog.cloudera.com/blog/2016/02/progress-report-bringing-erasure-coding-to-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/02/progress-report-bringing-erasure-coding-to-apache-hadoop/</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/已经解决的-Flink-Jira/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rice.zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="明磊的技术网站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/已经解决的-Flink-Jira/" itemprop="url">已经解决的 Flink Jira</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T23:03:52+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/16/已经解决的-Flink-Jira/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/16/已经解决的-Flink-Jira/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/05/16/已经解决的-Flink-Jira/" class="leancloud_visitors" data-flag-title="已经解决的 Flink Jira">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="已经解决的-Flink-JIRA"><a href="#已经解决的-Flink-JIRA" class="headerlink" title="已经解决的 Flink JIRA"></a>已经解决的 Flink JIRA</h2><h3 id="https-issues-apache-org-jira-browse-FLINK-6381"><a href="#https-issues-apache-org-jira-browse-FLINK-6381" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6381"></a><a href="https://issues.apache.org/jira/browse/FLINK-6381" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6381</a></h3><ul>
-<li><font color="#0099ff">Unnecessary synchronized object in BucketingSink</font>
-
-</li>
-</ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6311"><a href="#https-issues-apache-org-jira-browse-FLINK-6311" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6311"></a><a href="https://issues.apache.org/jira/browse/FLINK-6311" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6311</a></h3><ul>
-<li><font color="#0099ff">NPE in FlinkKinesisConsumer if source was closed before run</font>
-
-
-</li>
-</ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6143"><a href="#https-issues-apache-org-jira-browse-FLINK-6143" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6143"></a><a href="https://issues.apache.org/jira/browse/FLINK-6143" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6143</a></h3><ul>
-<li><font color="#0099ff">Unprotected access to this.flink in LocalExecutor#endSession</font>
-
-</li>
-</ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6313"><a href="#https-issues-apache-org-jira-browse-FLINK-6313" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6313"></a><a href="https://issues.apache.org/jira/browse/FLINK-6313" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6313</a></h3><ul>
-<li><font color="#0099ff">Some words was spelled wrong and incorrect LOG.error without print</font>
-
-</li>
-</ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6104"><a href="#https-issues-apache-org-jira-browse-FLINK-6104" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6104"></a><a href="https://issues.apache.org/jira/browse/FLINK-6104" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6104</a></h3><ul>
-<li><font color="#0099ff">Resource leak in ListViaRangeSpeedMiniBenchmark</font>
-
-
-</li>
-</ul>
-<h3 id="https-issues-apache-org-jira-browse-FLINK-6399"><a href="#https-issues-apache-org-jira-browse-FLINK-6399" class="headerlink" title="https://issues.apache.org/jira/browse/FLINK-6399"></a><a href="https://issues.apache.org/jira/browse/FLINK-6399" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6399</a></h3><ul>
-<li><font color="#0099ff">Update default Hadoop download version</font></li>
-</ul>
 
           
         
@@ -767,7 +753,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
