@@ -684,11 +684,299 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/21/MapReduce-论文读后感/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/21/MapReduce-论文读后感/" itemprop="url">MapReduce 论文读后感</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T13:42:37+08:00">
+                2017-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/21/MapReduce-论文读后感/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/21/MapReduce-论文读后感/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/21/MapReduce-论文读后感/" class="leancloud_visitors" data-flag-title="MapReduce 论文读后感">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="如何去读一篇论文"><a href="#如何去读一篇论文" class="headerlink" title="如何去读一篇论文"></a>如何去读一篇论文</h3><p><img src="/2017/05/21/MapReduce-论文读后感/2.jpg" alt="logo"></p>
+<p>阅读论文与阅读博客和小说不一样，以下提供了一些链接，请看呢。</p>
+<ul>
+<li><a href="http://organizationsandmarkets.com/2010/08/31/how-to-read-an-academic-article/" target="_blank" rel="external">How to read an academic article</a></li>
+<li><a href="http://www4.ncsu.edu/~akmassey/posts/2012-02-15-advice-on-reading-academic-papers.html" target="_blank" rel="external">Advice on reading academic papers</a></li>
+<li><a href="http://violentmetaphors.com/2013/08/25/how-to-read-and-understand-a-scientific-paper-2/" target="_blank" rel="external">How to read and understand a scientific paper</a></li>
+<li><a href="http://michaelrbernste.in/2014/10/21/should-i-read-papers.html" target="_blank" rel="external">Should I Read Papers?</a></li>
+<li><a href="https://www.youtube.com/watch?v=8eRx5Wo3xYA" target="_blank" rel="external">The Refreshingly Rewarding Realm of Research Papers</a></li>
+</ul>
+<p><br></p>
+<p>这是我接触分布式系统领域读的第一篇论文，在论文的 Abstract 里面就说了 MapReduce 是一种编程模型，并且这种编程模型用来处理并生成大量的数据集。下面均为我个人对该论文的理解所写，如果有错，还希望指出。</p>
+<p>用户定义一个 map 函数用来处理 key/value pairs, 并且在处理结束后生成一个中间的 key/value pairs. 这很好理解，举例说明，假设我有如下的数据集。</p>
+<pre><code>sup sup
+duck duck duck thanks a bunch
+thanks a bunch</code></pre>
+
+<p>当把此编程模型的 map 函数用在该数据集后，会产生如下的输出结果, 可以从下面的数据集看出来，括号内的第一个单词为 key , 第二个字母为该单词出现的次数。map 并不会对这些结果最汇总，只是单纯的对输入集做一个简单记录而已。每读到一个单词，就会标记出现了一次。论文里把下面的数据集叫做 <strong>intermediate key/value pairs</strong>。接下来，MapReduce 函数的编程模型就会把该数据集发送给 reduce 函数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/21/MapReduce-论文读后感/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/21/Distributed-systems-principles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/21/Distributed-systems-principles/" itemprop="url">Distributed-systems-principles</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T13:32:39+08:00">
+                2017-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/21/Distributed-systems-principles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/21/Distributed-systems-principles/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/21/Distributed-systems-principles/" class="leancloud_visitors" data-flag-title="Distributed-systems-principles">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2017/05/21/Distributed-systems-principles/1.jpg" alt="logo"></p>
+<h2 id="Distributed-Hash-Tables"><a href="#Distributed-Hash-Tables" class="headerlink" title="Distributed Hash Tables"></a>Distributed Hash Tables</h2><h2 id="Asynchronous-RPC"><a href="#Asynchronous-RPC" class="headerlink" title="Asynchronous RPC"></a>Asynchronous RPC</h2><h2 id="Fault-Tolerance"><a href="#Fault-Tolerance" class="headerlink" title="Fault Tolerance"></a>Fault Tolerance</h2><h2 id="Message-Oriented-Communication"><a href="#Message-Oriented-Communication" class="headerlink" title="Message-Oriented Communication"></a>Message-Oriented Communication</h2><h2 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h2><h3 id="Clock-Synchronization"><a href="#Clock-Synchronization" class="headerlink" title="Clock Synchronization"></a>Clock Synchronization</h3><h3 id="Logical-Clocks"><a href="#Logical-Clocks" class="headerlink" title="Logical Clocks"></a>Logical Clocks</h3><h3 id="Mutual-Exclusion"><a href="#Mutual-Exclusion" class="headerlink" title="Mutual Exclusion"></a>Mutual Exclusion</h3><h3 id="Election-Algorithms"><a href="#Election-Algorithms" class="headerlink" title="Election Algorithms"></a>Election Algorithms</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
