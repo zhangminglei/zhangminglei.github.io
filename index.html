@@ -264,6 +264,165 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/实时离线融合-Hive-Hql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/01/实时离线融合-Hive-Hql/" itemprop="url">实时离线融合-Hive-Hql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T23:02:28+08:00">
+                2017-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/01/实时离线融合-Hive-Hql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/01/实时离线融合-Hive-Hql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/01/实时离线融合-Hive-Hql/" class="leancloud_visitors" data-flag-title="实时离线融合-Hive-Hql">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <pre><code>select concat_ws(',','1','2','3','4','5','6','7','8','9') from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
+
+<p><code>Output</code>: <strong>1,2,3,4,5,6,7,8,9</strong></p>
+<pre><code>select split(concat_ws(',','1','2','3','4','5','6','7','8','9'), ',') from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
+
+<p><code>Output</code>: <strong>[“1”,”2”,”3”,”4”,”5”,”6”,”7”,”8”,”9”]</strong></p>
+<ul>
+<li>如果不用 explode 函数的话，那么对上面的数据进行处理的时候，一次性全部输出，处理起来比较麻烦。对应 scala 代码可以用 foreach 去实现相应的逻辑。</li>
+</ul>
+<pre><code>select explode(split(concat_ws(',','1','2','3','4','5','6','7','8','9'), ',')) from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
+
+<pre><code>Output: 
+    1
+    2
+    3
+    4
+    5
+    6    
+    7
+    8
+    9
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/01/实时离线融合-Hive-Hql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/Distributed-Snapshots-Determining-Global-States-of-Distributed-Systems-读后感/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -843,140 +1002,6 @@ thanks a bunch</code></pre>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/21/Distributed-systems-principles/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rice.zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="明磊的技术网站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/21/Distributed-systems-principles/" itemprop="url">Distributed-systems-principles</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T13:32:39+08:00">
-                2017-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/21/Distributed-systems-principles/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/21/Distributed-systems-principles/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/05/21/Distributed-systems-principles/" class="leancloud_visitors" data-flag-title="Distributed-systems-principles">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/2017/05/21/Distributed-systems-principles/1.jpg" alt="logo"></p>
-<h2 id="Distributed-Hash-Tables"><a href="#Distributed-Hash-Tables" class="headerlink" title="Distributed Hash Tables"></a>Distributed Hash Tables</h2><h2 id="Asynchronous-RPC"><a href="#Asynchronous-RPC" class="headerlink" title="Asynchronous RPC"></a>Asynchronous RPC</h2><h2 id="Fault-Tolerance"><a href="#Fault-Tolerance" class="headerlink" title="Fault Tolerance"></a>Fault Tolerance</h2><h2 id="Message-Oriented-Communication"><a href="#Message-Oriented-Communication" class="headerlink" title="Message-Oriented Communication"></a>Message-Oriented Communication</h2><h2 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h2><h3 id="Clock-Synchronization"><a href="#Clock-Synchronization" class="headerlink" title="Clock Synchronization"></a>Clock Synchronization</h3><h3 id="Logical-Clocks"><a href="#Logical-Clocks" class="headerlink" title="Logical Clocks"></a>Logical Clocks</h3><h3 id="Mutual-Exclusion"><a href="#Mutual-Exclusion" class="headerlink" title="Mutual Exclusion"></a>Mutual Exclusion</h3><h3 id="Election-Algorithms"><a href="#Election-Algorithms" class="headerlink" title="Election Algorithms"></a>Election Algorithms</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1026,7 +1051,7 @@ thanks a bunch</code></pre>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1039,7 +1064,7 @@ thanks a bunch</code></pre>
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
