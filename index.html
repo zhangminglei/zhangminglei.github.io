@@ -510,7 +510,7 @@
 
       
         
-          <p>在 Flink 里面，<code>TypeInformation</code> 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。</p>
+          <p>什么是类型推断 ？</p>
 <pre><code>val parseErrorTypeByString: ((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType = parseErrorTypeByClassOrByString(_: String =&gt; ParseErrorType, _: String, null, null)
 </code></pre><p>在上面的代码里面，<code>parseErrorTypeByString</code> 的返回类型是 <code>((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType</code>，那么可以不可以不写这样的返回类型呢？</p>
 <p>在 Scala 的类型系统里面，这是可以被 Scala 的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 Java 不用说，它肯定是一门静态语言, 而 Scala 语言从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常挫的类型推断能力去推断你的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。</p>
