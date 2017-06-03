@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
+<meta name="description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
 <meta name="keywords" content="flink 源码学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Types &amp; Serialization in Flink">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
-<meta property="og:description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
-<meta property="og:updated_time" content="2017-06-03T12:46:24.804Z">
+<meta property="og:description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
+<meta property="og:updated_time" content="2017-06-03T13:12:10.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Types &amp; Serialization in Flink">
-<meta name="twitter:description" content="即便你是一个美好善良的人，也必须得有态度有腔调，你可以永远用不到它们，但必须使这些完整起来。你须是雅与俗的合体，也须刚与柔始终附身。强悍的人生，取决于人格的完整，而完整的人格必然是平衡的。它可以参差错落，也可以美丑互见，在高尚的同时，也有对抗丑恶的能力。这样，以互补的方式，始终呈现给世界两种状态，即：得体的优雅，以及，适当的锋芒。没点锋芒的人，是没法在江湖行走的。">
+<meta name="twitter:description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
 
 
 
@@ -350,7 +350,10 @@
       
 
       
-        
+        <p>在 Flink 里面，<code>TypeInformation</code> 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。</p>
+<pre><code>val parseErrorTypeByString: ((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType = parseErrorTypeByClassOrByString(_: String =&gt; ParseErrorType, _: String, null, null)
+</code></pre><p>在上面的代码里面，<code>parseErrorTypeByString</code> 的返回类型是 <code>((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType</code>，那么可以不可以不写这样的返回类型的代码呢？在 Scala 的类型系统里面，这是可以被 Scala 的类型系统推断出来的，所以可以省略不写。</p>
+
       
     </div>
 
