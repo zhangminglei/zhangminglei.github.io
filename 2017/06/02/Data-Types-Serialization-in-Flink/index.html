@@ -93,13 +93,13 @@
 <meta name="description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
 <meta name="keywords" content="flink 源码学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类型系统 &amp; Data Types &amp; Serialization in Flink">
+<meta property="og:title" content="Type System || Data Types &amp; Serialization in Flink">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
-<meta property="og:updated_time" content="2017-06-03T13:32:49.502Z">
+<meta property="og:updated_time" content="2017-06-03T13:34:58.337Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类型系统 &amp; Data Types &amp; Serialization in Flink">
+<meta name="twitter:title" content="Type System || Data Types &amp; Serialization in Flink">
 <meta name="twitter:description" content="在 Flink 里面，TypeInformation 是 Flink 类型系统最核心的类。 那么类型系统有什么用？想必在工作中，大家接触到的应该不是很多。 简单举例说明，比如下面的 1 行代码，是由高阶函数和柯里化构成，这是我在工作中为了简化代码所重构后的代码，现在拿出来举例。 val parseErrorTypeByString: ((String) =&amp;gt; ParseErrorType,">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>类型系统 & Data Types & Serialization in Flink | 明磊的技术网站</title>
+  <title>Type System || Data Types & Serialization in Flink | 明磊的技术网站</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">类型系统 & Data Types & Serialization in Flink</h1>
+          <h1 class="post-title" itemprop="name headline">Type System || Data Types & Serialization in Flink</h1>
         
 
         <div class="post-meta">
@@ -322,7 +322,7 @@
 
           
           
-             <span id="/2017/06/02/Data-Types-Serialization-in-Flink/" class="leancloud_visitors" data-flag-title="类型系统 & Data Types & Serialization in Flink">
+             <span id="/2017/06/02/Data-Types-Serialization-in-Flink/" class="leancloud_visitors" data-flag-title="Type System || Data Types & Serialization in Flink">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,7 +355,7 @@
 </code></pre><p>在上面的代码里面，<code>parseErrorTypeByString</code> 的返回类型是 <code>((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType</code>，那么可以不可以不写这样的返回类型呢？</p>
 <p>在 Scala 的类型系统里面，这是可以被 Scala 的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 Java 不用说，它肯定是一门静态语言, 而 Scala 语言从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常挫的类型推断能力去推断你的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。</p>
 <a id="more"></a>
-<p>比如这样的，<code>Map map = ...</code> &amp;&amp; <code>ArrayList list = ...</code> ，<code>Map</code> and <code>ArrayList</code> 其实都是废话，而这样的代码充斥了整个项目。 而 Scala 可以用 <code>val map</code> 或者是 <code>val list</code> 去做这样的事情，从这个层面上来看，scala 更像是一门 Dynamtic Language。</p>
+<p>比如这样的，<code>Map map = ...</code> &amp;&amp; <code>ArrayList list = ...</code> ，<code>Map</code> and <code>ArrayList</code> 其实都是废话，而这样的代码充斥了整个项目。 而 Scala 可以用 <code>val map</code> 或者是 <code>val list</code> 去做这样的事情，从这个层面上来看，scala 更像是一门 Dynamtic Language。 所以 Scala 给我的感觉是，语法上像是一门动态语言，但是对于类型推断 Scala 做的足够好。</p>
 
       
     </div>
@@ -675,7 +675,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/';
           this.page.identifier = '2017/06/02/Data-Types-Serialization-in-Flink/';
-          this.page.title = '类型系统 & Data Types & Serialization in Flink';
+          this.page.title = 'Type System || Data Types & Serialization in Flink';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://zhangminglei-github-io.disqus.com/embed.js';
