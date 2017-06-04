@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
+<meta name="description" content="如果您对类型系统没有什么概念或者没有系统的学习过类似课程，Plase refers to this website，这是研究生课程所学习的一门课，用形式化的方法去研究编程语言以及对应的类型系统，其中包括 Untyped lambda calculus, Exception and Contintuation, Simple Types, Subtyping, Higher-order system">
 <meta name="keywords" content="flink 源码学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型系统 &amp; 类型抽取 &amp; 序列化 in Flink">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
-<meta property="og:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
-<meta property="og:updated_time" content="2017-06-04T13:36:05.187Z">
+<meta property="og:description" content="如果您对类型系统没有什么概念或者没有系统的学习过类似课程，Plase refers to this website，这是研究生课程所学习的一门课，用形式化的方法去研究编程语言以及对应的类型系统，其中包括 Untyped lambda calculus, Exception and Contintuation, Simple Types, Subtyping, Higher-order system">
+<meta property="og:updated_time" content="2017-06-04T13:52:03.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型系统 &amp; 类型抽取 &amp; 序列化 in Flink">
-<meta name="twitter:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
+<meta name="twitter:description" content="如果您对类型系统没有什么概念或者没有系统的学习过类似课程，Plase refers to this website，这是研究生课程所学习的一门课，用形式化的方法去研究编程语言以及对应的类型系统，其中包括 Untyped lambda calculus, Exception and Contintuation, Simple Types, Subtyping, Higher-order system">
 
 
 
@@ -350,7 +350,8 @@
       
 
       
-        <blockquote>
+        <p>如果您对类型系统没有什么概念或者没有系统的学习过类似课程，<a href="http://staff.ustc.edu.cn/~bjhua/courses/theory/2015/index.html" target="_blank" rel="external">Plase refers to this website</a>，这是研究生课程所学习的一门课，用形式化的方法去研究编程语言以及对应的类型系统，其中包括 <code>Untyped lambda calculus</code>, <code>Exception and Contintuation</code>, <code>Simple Types</code>, <code>Subtyping</code>, <code>Higher-order systems</code>, <code>Type Inference</code>, <code>Recursive types</code> 等。学完这门课，你就会得知为什么像 Scala 这样的语言对于递归类型是一定要写出其返回值类型，而对于其它类型并不需要直接这么去做，而由对应的类型系统可以推导出，类似于这样的话题。</p>
+<blockquote>
 <p><strong>前言，什么是类型推导？</strong></p>
 </blockquote>
 <pre><code>val parseErrorTypeByString: 
@@ -360,7 +361,7 @@
 parseErrorTypeByClassOrByString(_: String => ParseErrorType, _: String, null, null)</code></pre>
 
 <p>在上面的代码里面，<code>parseErrorTypeByString</code> 的返回类型是 <code>((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType</code>，那么可以不可以不写这样的返回类型呢？</p>
-<p>在 Scala 语言里，这是可以被它的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 对于 Java, 它是一门静态语言, 而 Scala 从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常弱的类型推断能力去推断出数据的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。</p>
+<p>在 Scala 语言里，这是可以被它的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 对于 Java, 它是一门静态语言, 而 Scala 从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常弱的类型推断能力去推断出数据的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。所以 Flink 需要实现自己的类型系统，或者借用 Scala 的类型系统去推断自身数据流的类型信息。</p>
 <a id="more"></a>
 <p>比如这样的，<code>Map map = ...</code> &amp;&amp; <code>ArrayList list = ...</code> ，<code>Map</code> and <code>ArrayList</code> 其实都是废话，而这样的代码充斥了整个项目。 而 Scala 可以用 <code>val map</code> 或者是 <code>val list</code> 去做这样的事情，从这个层面上来看，scala 更像是一门 Dynamtic Language。 所以 Scala 给我的感觉是，语法上像是一门动态语言，但是对于类型推断, Scala 做的足够好。</p>
 <p>在 Flink 里，<code>TypeInformation</code> 是它的类型系统里最核心的类，同时也是编程语言对象模型和表示该对象 Schema 的一个桥梁。其中基本类型在 Flink 里面是不可分割的并同时被认为是一个单独的 field。例如：数组和集合是单独的一个 field；Tuples 和 case classes 所表示的 fields 数量和它本身所持有的 fields 数量一样多。此外，每一个类型都会有一个 arity ，表示该类型所包含的 fields 数。</p>
