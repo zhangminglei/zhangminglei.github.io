@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
-<meta property="og:updated_time" content="2017-06-04T13:15:00.155Z">
+<meta property="og:updated_time" content="2017-06-04T13:32:42.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Type System &amp; Type Extraction &amp; Serialization in Flink">
 <meta name="twitter:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
@@ -376,7 +376,7 @@ public class OuterType {
 <p>例如上面的代码, id, text, timestamp 都是基本类型并且只占据着一个 field。<code>InnerType</code> 总共包含了 2 个 fields，同时是拥有 2 个 fields 的一个 arity; 而 <code>OuterType</code> 总共包含了 3 个 fields [递归的展开]，但它是一个拥有 2 个 fields 的 一个 arity。可以通过 <code>TypeInformation</code> 提供的 <code>getTotalFields()</code> 以及 <code>getArity()</code> 方法获得其数量。</p>
 <p>在 TypeInformation 的抽象类里面有一个 <code>createSerializer</code> 的方法，源码如下：</p>
 <pre><code>public abstract TypeSerializer&lt;T&gt; createSerializer(ExecutionConfig config);
-</code></pre><p>返回一个 <code>TypeSerializer&lt;T&gt;</code>, 那么什么是 <code>TypeSerializer&lt;T&gt;</code>？ 这是 Flink 自己针对数据集的类型信息为自己定制的一套序列化工具。其中参数 <code>T</code>为序列化器需要序列化数据流的数据类型。比如一个类的成员对象很多的时候，其实并不需要反序列所有对象的成员变量，而是可以通过偏移量的做法，反序列化特定的一些成员变量即可。</p>
+</code></pre><p>返回一个 <code>TypeSerializer&lt;T&gt;</code>, 那么什么是 <code>TypeSerializer&lt;T&gt;</code>？ <strong>这是 Flink 自己针对数据集的类型信息为自己定制的一套序列化工具</strong>。Flink 支持处理任意的 Java 或者 Scala 对象类型，在一个程序被优化之前，数据类型的信息在每一次程序运行之前都需要被确定。对于 Java 程序来说，Flink 拥有一个基于反射类型抽取的组件去分析用户自定义程序 [UDF] 的返回类型。而对于 Scala 编写的 Flink 程序代码，可以利用 Scala 自身的类型系统去分析用户自定义程序的返回类型。Flink 对于自身的框架定义了一个针对每一种数据类型的类，叫做 <code>TypeInformation</code>。既然有类型信息，也就具有针对具体类型而定制的序列化和反序列化的工具了。</p>
 <p><code>TypeInformation</code>的具体实现类有许多个，其中比如 <code>BasicTypeInfo</code>描述了 Java 基本类型的一些序列化的信息，<code>String, Boolean, Byte, Short, Integer, Long, Float, Double, Character， Date， Void, BigInteger, BigDecimal</code>。我们来看一下这个类里面是如何描述 <code>Integer</code> 的类型信息的。</p>
 <pre><code>public static final BasicTypeInfo<integer> INT_TYPE_INFO = 
 new IntegerTypeInfo<integer>
