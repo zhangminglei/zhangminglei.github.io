@@ -779,7 +779,7 @@
 parseErrorTypeByClassOrByString(_: String => ParseErrorType, _: String, null, null)</code></pre>
 
 <p>在上面的代码里面，<code>parseErrorTypeByString</code> 的返回类型是 <code>((String) =&gt; ParseErrorType, String) =&gt; ParseErrorType</code>，那么可以不可以不写这样的返回类型呢？</p>
-<p>在 Scala 的类型系统里面，这是可以被 Scala 的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 对于 Java, 它是一门静态语言, 而 Scala 从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常弱的类型推断能力去推断出数据的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。</p>
+<p>在 Scala 语言里，这是可以被它的类型系统推断出来的，所以可以省略不写。 Flink 的代码 84.1% 是由 Java 构成，而 14.8% 的代码是由 Scala 构成。 对于 Java, 它是一门静态语言, 而 Scala 从严格意义上来说，它也是一门静态语言。 但是 Java 的类型推断信息非常的弱，非常弱的类型推断能力去推断出数据的类型，所以你在项目中写的 Java 代码，会有一大堆的类型信息。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/02/Data-Types-Serialization-in-Flink/#more" rel="contents">
