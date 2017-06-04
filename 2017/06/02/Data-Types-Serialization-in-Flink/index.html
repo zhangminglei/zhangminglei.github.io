@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Data-Types-Serialization-in-Flink/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
-<meta property="og:updated_time" content="2017-06-04T13:08:07.307Z">
+<meta property="og:updated_time" content="2017-06-04T13:15:00.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Type System &amp; Type Extraction &amp; Serialization in Flink">
 <meta name="twitter:description" content="前言，什么是类型推导？  val parseErrorTypeByString:   ((String) =&amp;gt; ParseErrorType, String) =&amp;gt; ParseErrorType =   parseErrorTypeByClassOrByString(_: String =&amp;gt; ParseErrorType, _: String, null, null)  在上面的代码里面，par">
@@ -377,12 +377,12 @@ public class OuterType {
 <p>在 TypeInformation 的抽象类里面有一个 <code>createSerializer</code> 的方法，源码如下：</p>
 <pre><code>public abstract TypeSerializer&lt;T&gt; createSerializer(ExecutionConfig config);
 </code></pre><p>返回一个 <code>TypeSerializer&lt;T&gt;</code>, 那么什么是 <code>TypeSerializer&lt;T&gt;</code>？ 这是 Flink 自己针对数据集的类型信息为自己定制的一套序列化工具。其中参数 <code>T</code>为序列化器需要序列化数据流的数据类型。比如一个类的成员对象很多的时候，其实并不需要反序列所有对象的成员变量，而是可以通过偏移量的做法，反序列化特定的一些成员变量即可。</p>
-<p><code>TypeInformation</code>的具体实现类有许多个，其中比如 <code>BasicTypeInfo</code>描述了 Java 基本类型的一些序列化的信息，<code>String, Boolean, Byte, Short, Integer, Long, Float, Double, Character， Date， Void, BigInteger, BigDecimal</code>。我们来看一下这个类里面是如何描述 <code>String</code> 的类型信息的。</p>
-<pre><code>public static final BasicTypeInfo<string> STRING_TYPE_INFO = 
-new BasicTypeInfo<string>
-(String.class, new Class<?>[]{}, StringSerializer.INSTANCE, StringComparator.class);</string></string></code></pre>
+<p><code>TypeInformation</code>的具体实现类有许多个，其中比如 <code>BasicTypeInfo</code>描述了 Java 基本类型的一些序列化的信息，<code>String, Boolean, Byte, Short, Integer, Long, Float, Double, Character， Date， Void, BigInteger, BigDecimal</code>。我们来看一下这个类里面是如何描述 <code>Integer</code> 的类型信息的。</p>
+<pre><code>public static final BasicTypeInfo<integer> INT_TYPE_INFO = 
+new IntegerTypeInfo<integer>
+(Integer.class, new Class<?>[]{Long.class, Float.class, Double.class, Character.class}, IntSerializer.INSTANCE, IntComparator.class);</integer></integer></code></pre>
 
-<p>其中第一个参数为需要序列化的类型信息，第二个参数为可能强转后的类型，第三个参数为针对该类定制的序列化器，最后一个参数为类型比较器。</p>
+<p>其中第一个参数为需要序列化的类型信息，第二个参数为可能强转后的类型，第三个参数为针对该类定制的序列化器，最后一个参数为类型比较器，我们现在一个一个看。第一个不用多说，很明显。而第二个说明 Integer 可能转换成 Long, Float, Double, Character 这几种类型。第三个参数是一个 Int 的序列化器的实例，采用单利模式进行设计，继承自 <code>TypeSerializer&lt;T&gt;</code>，第四个参数是类型比较器。继承自 <code>TypeComparator</code>。这四个参数的构成的构造函数形成了 Integer 类型的一个类型描述的基本信息。</p>
 
       
     </div>
