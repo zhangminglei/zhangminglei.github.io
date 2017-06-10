@@ -264,6 +264,148 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="rice.zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明磊的技术网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/" itemprop="url">State Backends 在 Flink 中的实现，目前存在的问题以及社区进展</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-10T22:24:44+08:00">
+                2017-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/" class="leancloud_visitors" data-flag-title="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展"><a href="#State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展" class="headerlink" title="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展"></a>State Backends 在 Flink 中的实现，目前存在的问题以及社区进展</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在分布式系统中，<strong><em>fault tolerant</em></strong> 是非常重要的一个概念，是系统在运行的过程中不会因为某一个操作的失败而导致整个系统都受到影响。 Flink 是一个分布式的系统，自然少不了 <strong><em>fault tolerant</em></strong> 这样的功能。 在 Flink 中，为了让程序在运行的过程中的状态得以容错，Flink 会对这些 State 去做 Checkpoint。</p>
+<h2 id="什么是-State-Backends"><a href="#什么是-State-Backends" class="headerlink" title="什么是 State Backends"></a>什么是 State Backends</h2><p>当对具体的某一种 State 做 Checkpoint 的时候，这个时候就需要具体的 Backends 做为后备支持。如何去做 Checkpoint 以及做完 Checkpoint 后这些 State Checkpoint 到了什么地方，这些是依赖于具体的 State Backends 完成的。 Flink 目前提供了有如下的 Backends 的实现。</p>
+<h4 id="1-MemoryStateBackend"><a href="#1-MemoryStateBackend" class="headerlink" title="1. MemoryStateBackend"></a>1. MemoryStateBackend</h4><p>如果作业没有配置指定 Backends 的话，就会默认采取 MemoryStateBackend 策略。 MemoryStateBackend 把数据以内部对象的形式保存在 Java 的堆内存中。Key / Value 形式的 State 和 Window 操作会以 Hash 表的形式存储值和触发器等 【此时此刻均在 TaskManager 中】。</p>
+<p>在做 Checkpoint 之后，该 Backend 会对 State 做镜像并且做为 checkpoint 确认消息的一部分发送到 JobManager 中, 同样也是存储在 该 JobManager 的堆内存里。 </p>
+<p><strong>注意</strong>：由于是以内存形式存储的 State, 并不会持久化到磁盘中。所以默认的该种方式会有一些限制：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/04/英文表达方式-第三篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -832,165 +974,6 @@ parseErrorTypeByClassOrByString(_: String => ParseErrorType, _: String, null, nu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/实时离线融合-Hive-Hql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="rice.zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="明磊的技术网站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/01/实时离线融合-Hive-Hql/" itemprop="url">实时离线融合-Hive-Hql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T23:02:28+08:00">
-                2017-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/01/实时离线融合-Hive-Hql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/01/实时离线融合-Hive-Hql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/01/实时离线融合-Hive-Hql/" class="leancloud_visitors" data-flag-title="实时离线融合-Hive-Hql">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <pre><code>select concat_ws(',','1','2','3','4','5','6','7','8','9') from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
-
-<p><code>Output</code>: <strong>1,2,3,4,5,6,7,8,9</strong></p>
-<pre><code>select split(concat_ws(',','1','2','3','4','5','6','7','8','9'), ',') from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
-
-<p><code>Output</code>: <strong>[“1”,”2”,”3”,”4”,”5”,”6”,”7”,”8”,”9”]</strong></p>
-<ul>
-<li>如果不用 explode 函数的话，那么对上面的数据进行处理的时候，一次性全部输出，处理起来比较麻烦。对应 scala 代码可以用 foreach 去实现相应的逻辑。</li>
-</ul>
-<pre><code>select explode(split(concat_ws(',','1','2','3','4','5','6','7','8','9'), ',')) from vipods.ods_log_app_ads_impression_hm where dt = '20170522' limit 9</code></pre>
-
-<pre><code>Output: 
-    1
-    2
-    3
-    4
-    5
-    6    
-    7
-    8
-    9
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/01/实时离线融合-Hive-Hql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1040,7 +1023,7 @@ parseErrorTypeByClassOrByString(_: String => ParseErrorType, _: String, null, nu
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
