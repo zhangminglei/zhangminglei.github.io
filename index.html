@@ -357,7 +357,7 @@
 <h2 id="什么是-State-Backends"><a href="#什么是-State-Backends" class="headerlink" title="什么是 State Backends"></a>什么是 State Backends</h2><p>当对具体的某一种 State 做 Checkpoint 的时候，这个时候就需要具体的 Backends 做为后备支持。如何去做 Checkpoint 以及做完 Checkpoint 后这些 State Checkpoint 到了什么地方，这些是依赖于具体的 State Backends 完成的。 Flink 目前提供了有如下的 Backends 的实现。</p>
 <h4 id="1-MemoryStateBackend"><a href="#1-MemoryStateBackend" class="headerlink" title="1. MemoryStateBackend"></a>1. MemoryStateBackend</h4><p>如果作业没有配置指定 Backends 的话，就会默认采取 MemoryStateBackend 策略。 MemoryStateBackend 把数据以内部对象的形式保存在 Java 的堆内存中。Key / Value 形式的 State 和 Window 操作会以 Hash 表的形式存储值和触发器等 【此时此刻均在 TaskManager 中】。</p>
 <p>在做 Checkpoint 之后，该 Backend 会对 State 做镜像并且做为 checkpoint 确认消息的一部分发送到 JobManager 中, 同样也是存储在 该 JobManager 的堆内存里。 </p>
-<p><strong>注意</strong>：由于是以内存形式存储的 State, 并不会持久化到磁盘中。所以默认的该种方式会有一些限制：</p>
+<p><strong>注意</strong>：由于是以内存形式存储的 State, 并不会持久化到磁盘中。所以默认的该种方式会有一些限制。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/#more" rel="contents">
