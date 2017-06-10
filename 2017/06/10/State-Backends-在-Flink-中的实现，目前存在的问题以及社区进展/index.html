@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展简介在分布式系统中，fault tolerant 是非常重要的一个概念，是系统在运行的过程中不会因为某一个操作的失败而导致整个系统都受到影响。 Flink 是一个分布式的系统，自然少不了 fault tolerant 这样的功能。 在 Flink 中，为了让程序在运行的过程中的状态得以容错，Flink 会对这些 St">
-<meta property="og:updated_time" content="2017-06-10T14:40:50.821Z">
+<meta property="og:updated_time" content="2017-06-10T15:02:57.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展">
 <meta name="twitter:description" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展简介在分布式系统中，fault tolerant 是非常重要的一个概念，是系统在运行的过程中不会因为某一个操作的失败而导致整个系统都受到影响。 Flink 是一个分布式的系统，自然少不了 fault tolerant 这样的功能。 在 Flink 中，为了让程序在运行的过程中的状态得以容错，Flink 会对这些 St">
@@ -363,11 +363,11 @@
 <li>由于该种 Backend 的策略是存储在 JobManager 的内存中，所以 State 必须适应于 JobManager 的内存大小。</li>
 </ul>
 </blockquote>
-<h4 id="2-FsStateBackend"><a href="#2-FsStateBackend" class="headerlink" title="2. FsStateBackend"></a>2. FsStateBackend</h4><p>采用该种策略做为 Backends 的作业需要配置一个文件系统的 URL 参数，例如：hdfs://namenode:40010/flink/checkpoints 或者是 file:///data/flink/checkpoints。 该种 Backends 的策略会把这些 State 先保存在 TaskManager 的内存中。一旦 checkpoint 后，就会把数据写入到之前配置 URL　地址里去。</p>
+<h4 id="2-FsStateBackend"><a href="#2-FsStateBackend" class="headerlink" title="2. FsStateBackend"></a>2. FsStateBackend</h4><p>采用该种策略做为 Backends 的作业需要配置一个文件系统的 URL 参数，例如：hdfs://namenode:40010/flink/checkpoints 或者是 file:///data/flink/checkpoints。 该种 Backends 的策略会把这些 State 先保存在 TaskManager 的内存中。一旦 checkpoint 后，就会把数据写入到之前配置 URL地址里去。</p>
 <h4 id="3-RocksDBStateBackend"><a href="#3-RocksDBStateBackend" class="headerlink" title="3. RocksDBStateBackend"></a>3. RocksDBStateBackend</h4><p>RocksDB 是一个内嵌的由 Facebook 开发的针对闪存以及内存的 Key-Value Store 存储系统。 同样的，采取该策略也需要配置和 FsStateBackends 一样的 URL 参数。 RocksDBStateBackend 会在<a href="http://rocksdb.org/" target="_blank" rel="external">RocksDB</a> 里面持有着这些State，并且 RocksDB 默认被存储在 TaskManager 的数据的目录下。 在对 State 做 Checkpoint 之后，整个的 RocksDB 数据库存储的内容将会被 Checkpoint 到之前配置的 URL 里面。 </p>
 <p><strong>注意</strong>： 对于 RocksDBStateBackend 策略，存储的 State 多少受限于 TaskManager 的磁盘大小的存储空间。 这也就意味着对于采用 RocksDBStateBackend 策略的作业，<strong><em>可以允许非常非常大的 State Size</em></strong>。</p>
 <p>目前，在 Flink 中只有这 3 中形式的 Backends 策略，一种是默认的基于内存形式的 MemoryStateBackend, 一种是基于文件系统形式的 FsStateBackend, 最后一种是基于 RocksDB 存储的 Backends。</p>
-<h2 id="Keyed-State-and-Backends"><a href="#Keyed-State-and-Backends" class="headerlink" title="Keyed State and Backends"></a>Keyed State and Backends</h2><p>在 Flink 中，State 分为 2 种，一种是 Keyd State, 另一种是 Operator State，他们在 Flink 程序运行中分别针对不同的状态。 对于 Keyed State, 总是和 keys 相关联，并且只能在 KeyedStream 上进行一些操作。 可以把 Keyed State 看成是已经被分区后的 Operator State，且对于每一个 Key 对应着一个状态分区。 可以简单的理解为 <operator, key="">。 </operator,></p>
+<h2 id="Keyed-State-and-Backends"><a href="#Keyed-State-and-Backends" class="headerlink" title="Keyed State and Backends"></a>Keyed State and Backends</h2><p>在 Flink 中，State 分为 2 种，一种是 Keyd State, 另一种是 Operator State，他们在 Flink 程序运行中分别针对不同的状态。 对于 Keyed State, 总是和 keys 相关联，并且只能在 KeyedStream 上进行一些操作。 可以把 Keyed State 看成是已经被分区后的 Operator State，且对于每一个 Key 对应着一个状态分区。 可以简单的理解为 <code>&lt;operator, key&gt;</code>。 </p>
 <p>代码实现</p>
 <pre><code>public interface KeyedStateBackend&lt;K&gt; extends InternalKeyContext&lt;K&gt; 
 
