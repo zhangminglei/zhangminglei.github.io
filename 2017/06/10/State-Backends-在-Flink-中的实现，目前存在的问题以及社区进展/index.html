@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/10/State-Backends-在-Flink-中的实现，目前存在的问题以及社区进展/index.html">
 <meta property="og:site_name" content="明磊的技术网站">
 <meta property="og:description" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展简介在分布式系统中，fault tolerant 是非常重要的一个概念，是系统在运行的过程中不会因为某一个操作的失败而导致整个系统都受到影响。 Flink 是一个分布式的系统，自然少不了 fault tolerant 这样的功能。 在 Flink 中，为了让程序在运行的过程中的状态得以容错，Flink 会对这些 St">
-<meta property="og:updated_time" content="2017-06-10T14:26:59.941Z">
+<meta property="og:updated_time" content="2017-06-10T14:33:42.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展">
 <meta name="twitter:description" content="State Backends 在 Flink 中的实现，目前存在的问题以及社区进展简介在分布式系统中，fault tolerant 是非常重要的一个概念，是系统在运行的过程中不会因为某一个操作的失败而导致整个系统都受到影响。 Flink 是一个分布式的系统，自然少不了 fault tolerant 这样的功能。 在 Flink 中，为了让程序在运行的过程中的状态得以容错，Flink 会对这些 St">
@@ -377,7 +377,7 @@ public abstract class AbstractKeyedStateBackend&lt;K&gt; implements KeyedStateBa
 // 具体的实现类如下(目前为 2 个)
 public class HeapKeyedStateBackend&lt;K&gt; extends AbstractKeyedStateBackend&lt;K&gt;
 public class RocksDBKeyedStateBackend&lt;K&gt; extends AbstractKeyedStateBackend&lt;K&gt; 
-</code></pre><h2 id="Operator-State-and-Backends"><a href="#Operator-State-and-Backends" class="headerlink" title="Operator State and Backends"></a>Operator State and Backends</h2><p>Operator State, 或者叫做 non-keyed State，每一个 operator state 都会绑定到一个并行的 Operator 实例。目前，关于 OperatorState 的  Backends 并没有一个很好的继承层次，社区在目前正在讨论之中，有望进行增强，详细见 <a href="https://issues.apache.org/jira/browse/FLINK-6849" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6849</a> 。</p>
+</code></pre><h2 id="Operator-State-and-Backends"><a href="#Operator-State-and-Backends" class="headerlink" title="Operator State and Backends"></a>Operator State and Backends</h2><p>Operator State, 或者叫做 non-keyed State，每一个 operator state 都会绑定到一个并行的 Operator 实例。目前，关于 OperatorState 的  Backends 并没有一个很好的继承层次，社区在目前正在讨论之中，有望进行增强，详细见 <strong><a href="https://issues.apache.org/jira/browse/FLINK-6849" target="_blank" rel="external">https://issues.apache.org/jira/browse/FLINK-6849</a></strong> 。</p>
 <p>目前的代码实现</p>
 <pre><code>public interface OperatorStateBackend extends OperatorStateStore, Snapshotable&lt;OperatorStateHandle&gt;, Closeable 
 </code></pre><p>没有抽象类，只有一个具体的默认实现类 <code>DefaultOperatorStateBackend</code></p>
