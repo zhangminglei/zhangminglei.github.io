@@ -354,7 +354,7 @@
       
         
           
-            <p>An initial question we considered is whether consumers should pull data from brokers or brokers should push data to the consumer. </p>
+            <h2 id="From-Apache-Kafka"><a href="#From-Apache-Kafka" class="headerlink" title="From Apache/Kafka"></a>From Apache/Kafka</h2><p>An initial question we considered is whether consumers should pull data from brokers or brokers should push data to the consumer. </p>
 <p>In this respect Kafka follows a more traditional design, shared by most messaging systems, where data is pushed to the broker from the producer and pulled from the broker by the consumer. </p>
 <p>Some logging-centric systems, such as Scribe and Apache Flume, follow a very different push-based path where data is pushed downstream. </p>
 <p>There are pros and cons to both approaches. However, a push-based system has difficulty dealing with diverse consumers as the broker controls the rate at which data is transferred. </p>
